@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { getMovies } from "../services/fakeMovieService";
 
 export default class Movies extends Component {
+  state = {
+    movies: getMovies()
+  };
+
   render() {
     return (
       <table className="table">
@@ -10,17 +15,17 @@ export default class Movies extends Component {
             <th scope="col">Genre</th>
             <th scope="col">Stock</th>
             <th scope="col">Rate</th>
-            <th />
-            <th />
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Movie Title</td>
-            <td>Comedy</td>
-            <td>10</td>
-            <td>9.8</td>
-          </tr>
+          {this.state.movies.map(movie => (
+            <tr key={movie._id}>
+              <td>{movie.title}</td>
+              <td>{movie.genre.name}</td>
+              <td>{movie.numberInStock}</td>
+              <td>{movie.dailyRentalRate}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     );
