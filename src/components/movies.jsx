@@ -16,6 +16,7 @@ export default class Movies extends Component {
     this.setState({ movies });
   }
   render() {
+    const liked = false;
     const { movies } = this.state;
     return movies.length > 0 ? (
       <React.Fragment>
@@ -38,7 +39,13 @@ export default class Movies extends Component {
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
-                <td />
+                <td>
+                  {liked ? (
+                    <i className="fas fa-heart" />
+                  ) : (
+                    <i class="far fa-heart" />
+                  )}
+                </td>
                 <td>
                   <button
                     className="btn btn-sm btn-danger"
