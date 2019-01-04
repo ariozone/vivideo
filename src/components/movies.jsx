@@ -43,7 +43,7 @@ export default class Movies extends Component {
                   {liked ? (
                     <i className="fas fa-heart" />
                   ) : (
-                    <i class="far fa-heart" />
+                    <i className="far fa-heart" />
                   )}
                 </td>
                 <td>
