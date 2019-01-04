@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Like from "./common/like";
 import { getMovies } from "../services/fakeMovieService";
 
 export default class Movies extends Component {
@@ -11,12 +12,10 @@ export default class Movies extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
   handleDelete(movie) {
-    // console.log(movie);
     const movies = [...this.state.movies].filter(m => m !== movie);
     this.setState({ movies });
   }
   render() {
-    const liked = false;
     const { movies } = this.state;
     return movies.length > 0 ? (
       <React.Fragment>
@@ -40,11 +39,7 @@ export default class Movies extends Component {
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
                 <td>
-                  {liked ? (
-                    <i className="fas fa-heart" />
-                  ) : (
-                    <i className="far fa-heart" />
-                  )}
+                  <Like />
                 </td>
                 <td>
                   <button
