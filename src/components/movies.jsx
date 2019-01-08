@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
 import { getMovies } from "../services/fakeMovieService";
+import { paginate } from "../utils/paginate";
 
 export default class Movies extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class Movies extends Component {
 
   render() {
     const { movies, pageSize, currentPage } = this.state;
+
     return movies.length > 0 ? (
       <React.Fragment>
         <h3>There are {movies.length} Movies Available</h3>
