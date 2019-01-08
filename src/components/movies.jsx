@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Like from "./common/like";
-import pagination from "./common/pagination";
+import Pagination from "./common/pagination";
 import { getMovies } from "../services/fakeMovieService";
 
 export default class Movies extends Component {
@@ -68,6 +68,7 @@ export default class Movies extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination />
       </React.Fragment>
     ) : (
       <h3>There are no movies in the database.</h3>

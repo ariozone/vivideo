@@ -1,5 +1,5 @@
 import React from "react";
 
-export function pagination() {
-  return <p>Pagination</p>;
+export default function Pagination() {
+  return <p>pagination</p>;
 }
