@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import _ from "lodash";
+import PropTypes from "prop-types";
 
 export default function Pagination(props) {
   const { items, pageSize, onPageChanges, currentPage } = props;
