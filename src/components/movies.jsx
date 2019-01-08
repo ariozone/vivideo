@@ -7,7 +7,8 @@ export default class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: getMovies()
+      movies: getMovies(),
+      pageSize: 3
     };
 
     this.handleDelete = this.handleDelete.bind(this);
