@@ -40,7 +40,7 @@ export default class Movies extends Component {
     const movies = paginate(allMovies, currentPage, pageSize);
     return movies.length > 0 ? (
       <React.Fragment>
-        <h3>There are {movies.length} Movies Available</h3>
+        <h3>There are {allMovies.length} Movies Available</h3>
         <table className="table m-2">
           <thead className="thead-dark">
             <tr>
