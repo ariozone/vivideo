@@ -36,8 +36,8 @@ export default class Movies extends Component {
   }
 
   render() {
-    const { movies, pageSize, currentPage } = this.state;
-
+    const { movies: allMovies, pageSize, currentPage } = this.state;
+    const movies = paginate(allMovies, currentPage, pageSize);
     return movies.length > 0 ? (
       <React.Fragment>
         <h3>There are {movies.length} Movies Available</h3>
@@ -78,7 +78,7 @@ export default class Movies extends Component {
           </tbody>
         </table>
         <Pagination
-          items={movies.length}
+          items={allMovies.length}
           pageSize={pageSize}
           onPageChanges={this.handlePageChanges}
           currentPage={currentPage}
