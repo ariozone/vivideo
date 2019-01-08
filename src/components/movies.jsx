@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Like from "./common/like";
+import pagination from "./common/pagination";
 import { getMovies } from "../services/fakeMovieService";
 
 export default class Movies extends Component {
