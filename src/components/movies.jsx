@@ -8,7 +8,7 @@ export default class Movies extends Component {
     super(props);
     this.state = {
       movies: getMovies(),
-      pageSize: 3
+      pageSize: 4
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -74,7 +74,7 @@ export default class Movies extends Component {
           </tbody>
         </table>
         <Pagination
-          items={movies}
+          items={movies.length}
           pageSize={pageSize}
           onPageChanges={this.handlePageChanges}
         />
