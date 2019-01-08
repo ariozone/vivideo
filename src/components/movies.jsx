@@ -14,6 +14,7 @@ export default class Movies extends Component {
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.handlePageChanges = this.handlePageChanges.bind(this);
   }
 
   handleDelete(movie) {
@@ -30,7 +31,7 @@ export default class Movies extends Component {
   }
 
   handlePageChanges(page) {
-    console.log(page);
+    this.setState({ currentPage: page });
   }
 
   render() {
