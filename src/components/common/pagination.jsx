@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import _ from "lodash";
 
@@ -12,7 +13,9 @@ export default function Pagination(props) {
       <ul className="pagination">
         {pages.map(page => (
           <li key={page} className="page-item">
-            <a className="page-link">{page}</a>
+            <a onClick={() => onPageChanges(page)} className="page-link">
+              {page}
+            </a>
           </li>
         ))}
       </ul>
