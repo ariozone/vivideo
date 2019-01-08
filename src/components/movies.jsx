@@ -29,7 +29,7 @@ export default class Movies extends Component {
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, pageSize } = this.state;
     return movies.length > 0 ? (
       <React.Fragment>
         <h3>There are {movies.length} Movies Available</h3>
@@ -69,7 +69,11 @@ export default class Movies extends Component {
             ))}
           </tbody>
         </table>
-        <Pagination />
+        <Pagination
+          items={movies}
+          pageSize={pageSize}
+          onPageChanges={this.handlePageChanges}
+        />
       </React.Fragment>
     ) : (
       <h3>There are no movies in the database.</h3>
