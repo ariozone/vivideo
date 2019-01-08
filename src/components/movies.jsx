@@ -28,6 +28,10 @@ export default class Movies extends Component {
     this.setState({ movies });
   }
 
+  handlePageChanges(page) {
+    console.log(page);
+  }
+
   render() {
     const { movies, pageSize } = this.state;
     return movies.length > 0 ? (
