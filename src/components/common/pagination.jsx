@@ -26,3 +26,10 @@ export default function Pagination(props) {
     </nav>
   );
 }
+
+Pagination.propTypes = {
+  items: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  onPageChanges: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired
+};
