@@ -5,6 +5,7 @@ export default function Pagination(props) {
   const { items, pageSize, onPageChanges } = props;
   const numberOfPages = items / pageSize;
   const pages = _.range(1, numberOfPages + 1);
+  if (numberOfPages <= 1) return null;
 
   return (
     <nav aria-label="Page navigation example">
