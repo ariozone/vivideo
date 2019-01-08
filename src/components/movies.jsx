@@ -8,7 +8,8 @@ export default class Movies extends Component {
     super(props);
     this.state = {
       movies: getMovies(),
-      pageSize: 8
+      pageSize: 4,
+      currentPage: 1
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -33,7 +34,7 @@ export default class Movies extends Component {
   }
 
   render() {
-    const { movies, pageSize } = this.state;
+    const { movies, pageSize, currentPage } = this.state;
     return movies.length > 0 ? (
       <React.Fragment>
         <h3>There are {movies.length} Movies Available</h3>
@@ -77,6 +78,7 @@ export default class Movies extends Component {
           items={movies.length}
           pageSize={pageSize}
           onPageChanges={this.handlePageChanges}
+          currentPage={currentPage}
         />
       </React.Fragment>
     ) : (
