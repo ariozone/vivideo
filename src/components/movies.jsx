@@ -46,12 +46,12 @@ export default class Movies extends Component {
   }
 
   render() {
-    const { movies: allMovies, pageSize, currentPage } = this.state;
+    const { movies: allMovies, pageSize, currentPage, genres } = this.state;
     const movies = paginate(allMovies, currentPage, pageSize);
     return movies.length > 0 ? (
       <div className="row">
         <div className="col-3">
-          <ListGroup />
+          <ListGroup items={genres} />
         </div>
         <div className="col">
           <h3>There are {allMovies.length} Movies Available</h3>
