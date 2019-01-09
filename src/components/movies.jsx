@@ -10,8 +10,8 @@ export default class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: getMovies(),
-      genres: getGenres(),
+      movies: [],
+      genres: [],
       pageSize: 4,
       currentPage: 1
     };
@@ -19,6 +19,13 @@ export default class Movies extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handlePageChanges = this.handlePageChanges.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      movies: getMovies(),
+      genres: getGenres()
+    });
   }
 
   handleDelete(movie) {
