@@ -19,6 +19,7 @@ export default class Movies extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handlePageChanges = this.handlePageChanges.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -45,13 +46,17 @@ export default class Movies extends Component {
     this.setState({ currentPage: page });
   }
 
+  handleSelect(genre) {
+    console.log(genre);
+  }
+
   render() {
     const { movies: allMovies, pageSize, currentPage, genres } = this.state;
     const movies = paginate(allMovies, currentPage, pageSize);
     return movies.length > 0 ? (
       <div className="row">
         <div className="col-3">
-          <ListGroup items={genres} />
+          <ListGroup items={genres} onItemSelect={this.handleSelect} />
         </div>
         <div className="col">
           <h3>There are {allMovies.length} Movies Available</h3>
