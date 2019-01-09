@@ -40,7 +40,11 @@ export default class Movies extends Component {
     const { movies: allMovies, pageSize, currentPage } = this.state;
     const movies = paginate(allMovies, currentPage, pageSize);
     return movies.length > 0 ? (
-      <React.Fragment>
+      <div className="row">
+        <div className="col-3">
+          <ListGroup />
+        </div>
+        <div className="col" />
         <h3>There are {allMovies.length} Movies Available</h3>
         <table className="table m-2">
           <thead className="thead-dark">
@@ -84,7 +88,7 @@ export default class Movies extends Component {
           onPageChanges={this.handlePageChanges}
           currentPage={currentPage}
         />
-      </React.Fragment>
+      </div>
     ) : (
       <h3>There are no movies in the database.</h3>
     );
