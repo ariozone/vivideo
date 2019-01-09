@@ -3,6 +3,7 @@ import Like from "./common/like";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/list-group";
 import { getMovies } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 
 export default class Movies extends Component {
@@ -10,6 +11,7 @@ export default class Movies extends Component {
     super(props);
     this.state = {
       movies: getMovies(),
+      genres: getGenres(),
       pageSize: 4,
       currentPage: 1
     };
