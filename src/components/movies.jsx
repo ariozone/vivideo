@@ -58,6 +58,7 @@ export default class Movies extends Component {
         <div className="col-3">
           <ListGroup items={genres} onItemSelect={this.handleSelect} />
         </div>
+
         <div className="col">
           <h3>There are {allMovies.length} Movies Available</h3>
           <table className="table m-2">
