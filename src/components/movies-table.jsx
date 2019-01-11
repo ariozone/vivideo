@@ -1,4 +1,5 @@
 import React from "react";
+import Like from "./common/like";
 
 export default function MoviesTable(props) {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Like from "./common/like";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/list-group";
+import MoviesTable from "./movies-table";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
@@ -82,6 +82,8 @@ export default class Movies extends Component {
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h3>
+
+          <MoviesTable />
 
           <Pagination
             items={filtered.length}
