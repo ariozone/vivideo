@@ -5,6 +5,7 @@ import ListGroup from "./common/list-group";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
+import _ from "lodash";
 
 export default class Movies extends Component {
   constructor(props) {
@@ -64,14 +65,15 @@ export default class Movies extends Component {
       pageSize,
       currentPage,
       genres,
-      selectedGenre
+      selectedGenre,
+      sortColumn
     } = this.state;
 
     const filtered =
       selectedGenre && selectedGenre._id
         ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
         : allMovies;
-
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const movies = paginate(filtered, currentPage, pageSize);
 
     return (
