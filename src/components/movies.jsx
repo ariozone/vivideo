@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import MoviesTable from "./movies-table";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/list-group";
-import MoviesTable from "./movies-table";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
@@ -52,6 +52,10 @@ export default class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   }
 
+  handleSort(column) {
+    console.log(column);
+  }
+
   render() {
     const {
       movies: allMovies,
@@ -89,6 +93,7 @@ export default class Movies extends Component {
             movies={movies}
             onLike={this.handleLike}
             onDelete={this.handleDelete}
+            onSort={this.handleSort}
           />
 
           <Pagination
