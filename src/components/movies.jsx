@@ -14,13 +14,15 @@ export default class Movies extends Component {
       genres: [],
       pageSize: 4,
       currentPage: 1,
-      selectedGenre: "All Genres"
+      selectedGenre: "All Genres",
+      sortColumn: { path: "title", order: "asc" }
     };
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +54,8 @@ export default class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   }
 
-  handleSort(column) {
-    console.log(column);
+  handleSort(path) {
+    this.setState({ sortColumn: { path, order: "asc" } });
   }
 
   render() {
