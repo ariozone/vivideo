@@ -48,7 +48,7 @@ export default class Movies extends Component {
   }
 
   handleSelect(genre) {
-    this.setState({ selectedGenre: genre });
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   }
 
   render() {
@@ -75,7 +75,9 @@ export default class Movies extends Component {
         </div>
 
         <div className="col">
-          <h3>There are {allMovies.length} Movies Available</h3>
+          <h3>
+            There are {filtered.length} {selectedGenre.name} Movies Available.
+          </h3>
           <table className="table m-2">
             <thead className="thead-dark">
               <tr>
