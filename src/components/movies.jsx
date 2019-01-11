@@ -74,7 +74,7 @@ export default class Movies extends Component {
         ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
         : allMovies;
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-    const movies = paginate(filtered, currentPage, pageSize);
+    const movies = paginate(sorted, currentPage, pageSize);
 
     return (
       <div className="row">
