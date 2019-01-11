@@ -2,6 +2,7 @@ import React from "react";
 import Like from "./common/like";
 
 export default function MoviesTable(props) {
+  const { movies } = props;
   return (
     <table className="table m-2">
       <thead className="thead-dark">
