@@ -24,7 +24,7 @@ export default class Movies extends Component {
   }
 
   componentDidMount() {
-    const genres = [{ name: "All Genres" }, ...getGenres()];
+    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
     this.setState({
       movies: getMovies(),
       genres
@@ -49,7 +49,7 @@ export default class Movies extends Component {
   }
 
   handleSelect(genre) {
-    this.setState({ selectedGenre: genre });
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   }
 
   render() {
@@ -78,7 +78,8 @@ export default class Movies extends Component {
 
         <div className="col">
           <h3>
-            There are {filtered.length} {!"All Genres" && selectedGenre.name}{" "}
+            There are {filtered.length}{" "}
+            {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h3>
           <table className="table m-2">
