@@ -2,7 +2,7 @@ import React from "react";
 import Like from "./common/like";
 
 export default function MoviesTable(props) {
-  const { movies } = props;
+  const { movies, onDelete, onLike } = props;
   return (
     <table className="table m-2">
       <thead className="thead-dark">
@@ -24,15 +24,12 @@ export default function MoviesTable(props) {
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
                 <td>
-                  <Like
-                    liked={movie.liked}
-                    onClick={() => this.handleLike(movie)}
-                  />
+                  <Like liked={movie.liked} onClick={() => onLike(movie)} />
                 </td>
                 <td>
                   <button
                     className="btn btn-sm btn-danger"
-                    onClick={() => this.handleDelete(movie)}
+                    onClick={() => onDelete(movie)}
                   >
                     Delete
                   </button>

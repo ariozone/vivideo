@@ -85,7 +85,11 @@ export default class Movies extends Component {
             Movies Available.
           </h3>
 
-          <MoviesTable movies={movies} />
+          <MoviesTable
+            movies={movies}
+            onLike={this.handleLike}
+            onDelete={this.handleDelete}
+          />
 
           <Pagination
             items={filtered.length}
