@@ -63,8 +63,7 @@ export default class Movies extends Component {
     const filtered = selectedGenre
       ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
       : allMovies;
-    const movies = paginate(allMovies, currentPage, pageSize);
-
+    const movies = paginate(filtered, currentPage, pageSize);
     return movies.length > 0 ? (
       <div className="row">
         <div className="col-3">
@@ -114,7 +113,7 @@ export default class Movies extends Component {
             </tbody>
           </table>
           <Pagination
-            items={allMovies.length}
+            items={filtered.length}
             pageSize={pageSize}
             onPageChanges={this.handlePageChanges}
             currentPage={currentPage}
