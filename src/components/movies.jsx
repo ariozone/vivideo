@@ -14,7 +14,7 @@ export default class Movies extends Component {
       genres: [],
       pageSize: 4,
       currentPage: 1,
-      currentGenre: ""
+      selectedGenre: ""
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -48,7 +48,7 @@ export default class Movies extends Component {
   }
 
   handleSelect(genre) {
-    this.setState({ currentGenre: genre });
+    this.setState({ selectedGenre: genre });
   }
 
   render() {
@@ -57,16 +57,21 @@ export default class Movies extends Component {
       pageSize,
       currentPage,
       genres,
-      currentGenre
+      selectedGenre
     } = this.state;
+
+    const filtered = selectedGenre
+      ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
+      : allMovies;
     const movies = paginate(allMovies, currentPage, pageSize);
+
     return movies.length > 0 ? (
       <div className="row">
         <div className="col-3">
           <ListGroup
             items={genres}
-            onItemSelect={this.handleSelect}
-            selectedGenre={currentGenre}
+            onGenreSelect={this.handleSelect}
+            selectedGenre={selectedGenre}
           />
         </div>
 

@@ -5,7 +5,7 @@ export default function ListGroup(props) {
     items,
     textProperty,
     valueProperty,
-    onItemSelect,
+    onGenreSelect,
     selectedGenre
   } = props;
   return (
@@ -13,7 +13,7 @@ export default function ListGroup(props) {
       {items.map(item => (
         <li
           key={item[valueProperty]}
-          onClick={() => onItemSelect(item)}
+          onClick={() => onGenreSelect(item)}
           className={
             selectedGenre === item
               ? "list-group-item active"
