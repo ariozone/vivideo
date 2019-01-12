@@ -13,6 +13,14 @@ export default class TableHeader extends Component {
   }
 
   render() {
-    return <h1>This is tabla header</h1>;
+    return (
+      <thead>
+        <tr>
+          {this.props.columns.map(column => (
+            <td onClick={() => this.raiseSort(column.path)}>{column.lable}</td>
+          ))}
+        </tr>
+      </thead>
+    );
   }
 }
