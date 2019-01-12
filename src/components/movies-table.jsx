@@ -6,8 +6,11 @@ export default class MoviesTable extends Component {
     const sortColumn = { ...this.props.sortColumn };
     if (sortColumn.path === path) {
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    } else {
+      sortColumn.path = path;
+      sortColumn.order = "asc";
     }
-    this.props.onSort = { sortColumn: { path, order: "asc" } };
+    this.props.onSort(sortColumn);
   }
 
   render() {
@@ -25,7 +28,7 @@ export default class MoviesTable extends Component {
             <th scope="col" onClick={() => this.raiseSort("numberInStock")}>
               Stock
             </th>
-            <th scope="col" onClick={() => this.raiseSort("dailyRate")}>
+            <th scope="col" onClick={() => this.raiseSort("dailyRentalRate")}>
               Rate
             </th>
             <th />
