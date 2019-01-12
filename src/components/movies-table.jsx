@@ -15,7 +15,11 @@ export default class MoviesTable extends Component {
     const { movies, onDelete, onLike } = this.props;
     return (
       <table className="table m-2">
-        <TableHeader />
+        <TableHeader
+          columns={columns}
+          sortColumn={this.props.sortColumn}
+          onSort={this.props.onSort}
+        />
         <tbody>
           {movies.length > 0
             ? movies.map(movie => (
