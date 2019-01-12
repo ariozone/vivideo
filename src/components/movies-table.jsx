@@ -7,24 +7,25 @@ export default class MoviesTable extends Component {
     if (sortColumn.path === path) {
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
     }
+    this.props.onSort = { sortColumn: { path, order: "asc" } };
   }
 
   render() {
-    const { movies, onDelete, onLike, onSort } = this.props;
+    const { movies, onDelete, onLike } = this.props;
     return (
       <table className="table m-2">
         <thead className="thead-dark">
           <tr>
-            <th scope="col" onClick={() => onSort("title")}>
+            <th scope="col" onClick={() => this.raiseSort("title")}>
               Title
             </th>
-            <th scope="col" onClick={() => onSort("genre.name")}>
+            <th scope="col" onClick={() => this.raiseSort("genre.name")}>
               Genre
             </th>
-            <th scope="col" onClick={() => onSort("numberInStock")}>
+            <th scope="col" onClick={() => this.raiseSort("numberInStock")}>
               Stock
             </th>
-            <th scope="col" onClick={() => onSort("dailyRate")}>
+            <th scope="col" onClick={() => this.raiseSort("dailyRate")}>
               Rate
             </th>
             <th />
