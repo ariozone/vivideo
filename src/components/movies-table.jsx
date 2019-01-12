@@ -3,22 +3,22 @@ import TableHeader from "./common/table-header";
 import Like from "./common/like";
 
 export default class MoviesTable extends Component {
+  columns = [
+    { path: "title", label: "Title" },
+    { path: "genre.name", label: "Genre" },
+    { path: "numberInStock", label: "Stock" },
+    { path: "dailyRentalRate", label: "Rate" },
+    { key: "like" },
+    { key: "delete" }
+  ];
   render() {
-    const columns = [
-      { path: "title", label: "Title" },
-      { path: "genre.name", label: "Genre" },
-      { path: "numberInStock", label: "Stock" },
-      { path: "dailyRentalRate", label: "Rate" },
-      { key: "like", content: "like" },
-      { key: "delete", content: "delete" }
-    ];
-    const { movies, onDelete, onLike } = this.props;
+    const { movies, onDelete, onLike, sortColumn, onSort } = this.props;
     return (
       <table className="table m-2">
         <TableHeader
-          columns={columns}
-          sortColumn={this.props.sortColumn}
-          onSort={this.props.onSort}
+          columns={this.columns}
+          sortColumn={sortColumn}
+          onSort={onSort}
         />
         <tbody>
           {movies.length > 0

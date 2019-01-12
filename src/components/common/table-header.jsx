@@ -17,7 +17,12 @@ export default class TableHeader extends Component {
       <thead className="thead-dark">
         <tr>
           {this.props.columns.map(column => (
-            <td onClick={() => this.raiseSort(column.path)}>{column.lable}</td>
+            <th
+              key={column.path || column.key}
+              onClick={() => this.raiseSort(column.path)}
+            >
+              {column.label}
+            </th>
           ))}
         </tr>
       </thead>
