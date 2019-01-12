@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TableHeader from "./common/table-header";
 import Like from "./common/like";
 
 export default class MoviesTable extends Component {
@@ -14,24 +15,7 @@ export default class MoviesTable extends Component {
     const { movies, onDelete, onLike } = this.props;
     return (
       <table className="table m-2">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col" onClick={() => this.raiseSort("title")}>
-              Title
-            </th>
-            <th scope="col" onClick={() => this.raiseSort("genre.name")}>
-              Genre
-            </th>
-            <th scope="col" onClick={() => this.raiseSort("numberInStock")}>
-              Stock
-            </th>
-            <th scope="col" onClick={() => this.raiseSort("dailyRentalRate")}>
-              Rate
-            </th>
-            <th />
-            <th />
-          </tr>
-        </thead>
+        <TableHeader />
         <tbody>
           {movies.length > 0
             ? movies.map(movie => (
