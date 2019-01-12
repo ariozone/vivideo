@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import Like from "./common/like";
 
 export default class MoviesTable extends Component {
+  raiseSort(path) {
+    const sortColumn = { ...this.props.sortColumn };
+    if (sortColumn.path === path) {
+      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    }
+  }
+
   render() {
     const { movies, onDelete, onLike, onSort } = this.props;
     return (
