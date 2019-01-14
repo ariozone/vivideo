@@ -9,8 +9,23 @@ export default class MoviesTable extends Component {
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
     { path: "dailyRentalRate", label: "Rate" },
-    { key: "like" },
-    { key: "delete" }
+    {
+      key: "like",
+      content: (
+        <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
+      )
+    },
+    {
+      key: "delete",
+      content: (
+        <button
+          className="btn btn-sm btn-danger"
+          onClick={() => this.props.onDelete(movie)}
+        >
+          Delete
+        </button>
+      )
+    }
   ];
   render() {
     const { movies, onDelete, onLike, sortColumn, onSort } = this.props;

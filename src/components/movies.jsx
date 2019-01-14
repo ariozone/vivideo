@@ -56,10 +56,6 @@ export default class Movies extends Component {
   }
 
   handleSort(sortColumn) {
-    // const sortColumn = { ...this.state.sortColumn };
-    // if (sortColumn.path === path) {
-    //   sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    // }
     this.setState({ sortColumn });
   }
 
