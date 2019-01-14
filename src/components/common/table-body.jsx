@@ -9,7 +9,9 @@ export default class TableBody extends Component {
         {items.map(item => (
           <tr>
             {columns.map(column => (
-              <td>{_.get(item, column.path)}</td>
+              <td>
+                {column.path ? _.get(item, column.path) : column.content(item)}
+              </td>
             ))}
           </tr>
         ))}
