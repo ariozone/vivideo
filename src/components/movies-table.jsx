@@ -28,7 +28,7 @@ export default class MoviesTable extends Component {
     }
   ];
   render() {
-    const { movies, onDelete, onLike, sortColumn, onSort } = this.props;
+    const { movies, sortColumn, onSort } = this.props;
     return (
       <table className="table m-2">
         <TableHeader
@@ -36,29 +36,7 @@ export default class MoviesTable extends Component {
           sortColumn={sortColumn}
           onSort={onSort}
         />
-        {/* <tbody>
-          {movies.length > 0
-            ? movies.map(movie => (
-                <tr key={movie._id}>
-                  <td>{movie.title}</td>
-                  <td>{movie.genre.name}</td>
-                  <td>{movie.numberInStock}</td>
-                  <td>{movie.dailyRentalRate}</td>
-                  <td>
-                    <Like liked={movie.liked} onClick={() => onLike(movie)} />
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={() => onDelete(movie)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody> */}
+
         <TableBody items={movies} columns={this.columns} />
       </table>
     );
