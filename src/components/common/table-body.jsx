@@ -7,9 +7,9 @@ export default class TableBody extends Component {
     return (
       <tbody>
         {items.map(item => (
-          <tr>
+          <tr ket={item._id}>
             {columns.map(column => (
-              <td>
+              <td key={item._id + (column.path ? column.path : column.key)}>
                 {column.path ? _.get(item, column.path) : column.content(item)}
               </td>
             ))}
