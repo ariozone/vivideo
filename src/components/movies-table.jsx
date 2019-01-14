@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TableHeader from "./common/table-header";
 import Like from "./common/like";
+import TableBody from "./common/table-body";
 
 export default class MoviesTable extends Component {
   columns = [
@@ -43,6 +44,7 @@ export default class MoviesTable extends Component {
               ))
             : null}
         </tbody>
+        <TableBody items={movies} columns={this.columns} />
       </table>
     );
   }
