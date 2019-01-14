@@ -21,7 +21,7 @@ export default class MoviesTable extends Component {
           sortColumn={sortColumn}
           onSort={onSort}
         />
-        <tbody>
+        {/* <tbody>
           {movies.length > 0
             ? movies.map(movie => (
                 <tr key={movie._id}>
@@ -43,7 +43,7 @@ export default class MoviesTable extends Component {
                 </tr>
               ))
             : null}
-        </tbody>
+        </tbody> */}
         <TableBody items={movies} columns={this.columns} />
       </table>
     );
