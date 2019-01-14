@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 export default class TableBody extends Component {
+  createKey(item, column) {
+    return item._id + (column.path || column.key);
+  }
   render() {
     const { items, columns } = this.props;
     return (
       <tbody>
         {items.map(item => (
-          <tr ket={item._id}>
+          <tr key={item._id}>
             {columns.map(column => (
-              <td key={item._id + (column.path ? column.path : column.key)}>
+              <td key={this.createKey(item, column)}>
                 {column.path ? _.get(item, column.path) : column.content(item)}
               </td>
             ))}
