@@ -6,12 +6,12 @@ export default function Table(props) {
   return (
     <div>
       <TableHeader
-        columns={this.columns}
-        sortColumn={sortColumn}
-        onSort={onSort}
+        columns={this.props.columns}
+        sortColumn={props.sortColumn}
+        onSort={props.onSort}
       />
 
-      <TableBody items={movies} columns={this.columns} />
+      <TableBody items={props.items} columns={this.columns} />
     </div>
   );
 }
