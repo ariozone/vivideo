@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
 export default class TableHeader extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.raiseSort = this.raiseSort.bind(this);
-  //   this.renderSortIcon = this.renderSortIcon.bind(this);
-  // }
-
   raiseSort(path) {
     const sortColumn = { ...this.props.sortColumn };
     if (sortColumn.path === path) {
@@ -30,6 +24,7 @@ export default class TableHeader extends Component {
         <tr>
           {this.props.columns.map(column => (
             <th
+              className="pointer"
               key={column.path || column.key}
               onClick={() => this.raiseSort(column.path)}
             >
