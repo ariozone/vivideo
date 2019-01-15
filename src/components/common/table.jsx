@@ -5,8 +5,13 @@ import TableBody from "./table-body";
 export default function Table(props) {
   return (
     <div>
-      <TableHeader />
-      <TableBody />
+      <TableHeader
+        columns={this.columns}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
+
+      <TableBody items={movies} columns={this.columns} />
     </div>
   );
 }
