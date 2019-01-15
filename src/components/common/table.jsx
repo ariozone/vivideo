@@ -1,5 +1,12 @@
 import React from "react";
+import TableHeader from "./table-header";
+import TableBody from "./table-body";
 
 export default function Table(props) {
-  return <h1>table</h1>;
+  return (
+    <div>
+      <TableHeader />
+      <TableBody />
+    </div>
+  );
 }
