@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import Like from "./common/like";
+import MoviesTable from "./movies-table";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/list-group";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
+import _ from "lodash";
 
 export default class Movies extends Component {
   constructor(props) {
@@ -14,13 +15,15 @@ export default class Movies extends Component {
       genres: [],
       pageSize: 4,
       currentPage: 1,
-      selectedGenre: "All Genres"
+      selectedGenre: "All Genres",
+      sortColumn: { path: "title", order: "asc" }
     };
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   componentDidMount() {
@@ -52,20 +55,29 @@ export default class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   }
 
+  handleSort(sortColumn) {
+    this.setState({ sortColumn });
+  }
+
   render() {
     const {
       movies: allMovies,
       pageSize,
       currentPage,
       genres,
-      selectedGenre
+      selectedGenre,
+      sortColumn
     } = this.state;
 
     const filtered =
       selectedGenre && selectedGenre._id
         ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
         : allMovies;
-    const movies = paginate(filtered, currentPage, pageSize);
+
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+
+    const movies = paginate(sorted, currentPage, pageSize);
+
     return (
       <div className="row">
         <div className="col-3">
@@ -82,44 +94,15 @@ export default class Movies extends Component {
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h3>
-          <table className="table m-2">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Rate</th>
-                <th />
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {movies.length > 0
-                ? movies.map(movie => (
-                    <tr key={movie._id}>
-                      <td>{movie.title}</td>
-                      <td>{movie.genre.name}</td>
-                      <td>{movie.numberInStock}</td>
-                      <td>{movie.dailyRentalRate}</td>
-                      <td>
-                        <Like
-                          liked={movie.liked}
-                          onClick={() => this.handleLike(movie)}
-                        />
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-sm btn-danger"
-                          onClick={() => this.handleDelete(movie)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                : null}
-            </tbody>
-          </table>
+
+          <MoviesTable
+            movies={movies}
+            onLike={this.handleLike}
+            onDelete={this.handleDelete}
+            onSort={this.handleSort}
+            sortColumn={sortColumn}
+          />
+
           <Pagination
             items={filtered.length}
             pageSize={pageSize}
