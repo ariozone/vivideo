@@ -4,7 +4,9 @@ export default class MovieForm extends Component {
     super(props);
     this.handleSave = this.handleSave.bind(this);
   }
-  handleSave() {}
+  handleSave() {
+    this.props.history.push("/");
+  }
   render() {
     const { match } = this.props;
     return (
