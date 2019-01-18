@@ -14,11 +14,12 @@ class App extends Component {
         <Movies />
         <Switch>
           <Route path="/movies" component={Movies} />
-          <Redirect path="/home" to="/movies" />
+          <Redirect path="/" exact to="/movies" />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
           <Route path="/movie-form" component={MovieForm} />
           <Route path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </main>
     );
