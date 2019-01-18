@@ -13,7 +13,9 @@ export default class TableBody extends Component {
           <tr key={item._id}>
             {columns.map(column => (
               <td key={this.createKey(item, column)}>
-                {column.path ? _.get(item, column.path) : column.content(item)}
+                {column.content
+                  ? column.content(item)
+                  : _.get(item, column.path)}
               </td>
             ))}
           </tr>
