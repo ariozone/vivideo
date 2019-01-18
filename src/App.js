@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Movies from "./components/movies";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Customers from "./components/customers";
 import MovieForm from "./components/movie-form";
 import NotFound from "./components/not-found";
@@ -13,6 +13,8 @@ class App extends Component {
       <main className="container">
         <Movies />
         <Switch>
+          <Route path="/movies" component={Movies} />
+          <Redirect path="/home" to="/movies" />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
           <Route path="/movie-form" component={MovieForm} />
