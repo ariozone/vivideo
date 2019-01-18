@@ -12,6 +12,10 @@ class App extends Component {
     return (
       <main className="container">
         <Movies />
+        <Route path="/customers" component={Customers} />
+        <Route path="/rentals" component={Rentals} />
+        <Route path="/movie-form" component={MovieForm} />
+        <Route path="/not-found" component={NotFound} />
       </main>
     );
   }
