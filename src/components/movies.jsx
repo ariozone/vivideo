@@ -89,11 +89,11 @@ export default class Movies extends Component {
         </div>
 
         <div className="col">
-          <h3>
+          <h4 className="m-3">
             There are {filtered.length}{" "}
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
-          </h3>
+          </h4>
 
           <MoviesTable
             movies={movies}

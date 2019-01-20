@@ -9,7 +9,7 @@ export default function ListGroup(props) {
     selectedGenre
   } = props;
   return (
-    <ul className="list-group">
+    <ul className="list-group m-2">
       {items.map(item => (
         <li
           key={item[valueProperty]}
