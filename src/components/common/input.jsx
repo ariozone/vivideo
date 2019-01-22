@@ -3,14 +3,14 @@ import React from "react";
 export default function Form(props) {
   return (
     <div className="form-group">
-      <label htmlFor="username">Username</label>
+      <label htmlFor="props.name">Username</label>
       <input
         type="text"
         className="form-control"
-        name="username"
-        id="username"
+        name={props.name}
+        id={props.name}
         value={account.username}
-        onChange={this.handleChange}
+        onChange={props.handleChange}
       />
     </div>
   );
