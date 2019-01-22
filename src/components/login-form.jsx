@@ -14,7 +14,14 @@ export default class LoginForm extends Component {
     this.validate = this.validate.bind(this);
     this.validateProperty = this.validateProperty.bind(this);
   }
-
+  schema = {
+    username: Joi.string()
+      .required()
+      .label("Username"),
+    password: Joi.string()
+      .required()
+      .label("Password")
+  };
   handleSubmit(e) {
     e.preventDefault();
     const errors = this.validate();
