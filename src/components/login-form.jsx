@@ -15,8 +15,7 @@ export default class LoginForm extends Component {
   }
   handleChange(e) {
     const account = { ...this.state.account };
-    account.username = e.currentTarget.value;
-    account.password = e.currentTarget.value;
+    account[e.currentTarget.name] = e.currentTarget.value;
     this.setState({ account });
   }
   render() {
@@ -30,6 +29,7 @@ export default class LoginForm extends Component {
             <input
               type="text"
               className="form-control"
+              name="username"
               id="username"
               value={this.state.account.username}
               onChange={this.handleChange}
@@ -40,6 +40,7 @@ export default class LoginForm extends Component {
             <input
               type="text"
               className="form-control"
+              name="password"
               id="password"
               value={this.state.account.password}
               onChange={this.handleChange}
