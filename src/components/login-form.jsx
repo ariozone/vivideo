@@ -11,7 +11,9 @@ export default class LoginForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validate = this.validate.bind(this);
+    this.validateProperty = this.validateProperty.bind(this);
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const errors = this.validate();
@@ -34,6 +36,10 @@ export default class LoginForm extends Component {
       errors.password = "Password is required!";
     }
     return (errors.length = 0 ? null : errors);
+  }
+
+  validateProperty() {
+    console.log("");
   }
 
   render() {
