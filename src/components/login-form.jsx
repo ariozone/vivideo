@@ -19,6 +19,7 @@ export default class LoginForm extends Component {
     this.setState({ account });
   }
   render() {
+    const { account } = this.state;
     return (
       <div>
         <h1>Login</h1>
@@ -31,7 +32,7 @@ export default class LoginForm extends Component {
               className="form-control"
               name="username"
               id="username"
-              value={this.state.account.username}
+              value={account.username}
               onChange={this.handleChange}
             />
           </div>
@@ -42,7 +43,7 @@ export default class LoginForm extends Component {
               className="form-control"
               name="password"
               id="password"
-              value={this.state.account.password}
+              value={account.password}
               onChange={this.handleChange}
             />
           </div>
