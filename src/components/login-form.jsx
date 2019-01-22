@@ -44,17 +44,17 @@ export default class LoginForm extends Component {
   }
 
   validate() {
-    const result = Joi.validate(this.state.account, this.schema);
-    console.log(result);
-    const errors = {};
-    const { account } = this.state;
-    if (account.username.trim() === "") {
-      errors.username = "Username is required!";
+    const errors = { ...this.state.errors };
+    const resault = Joi.validate(this.state.account, this.schema, {
+      abortEarly: false
+    });
+    console.log(resault);
+    if (!resault.error) return {};
+    const target = resault.error.details;
+    for (let i = 0; i < target.length; i++) {
+      errors[target[i].path[0]] = target[i].message;
     }
-    if (account.password.trim() === "") {
-      errors.password = "Password is required!";
-    }
-    return (errors.length = 0 ? null : errors);
+    return errors;
   }
 
   validateProperty(input) {
