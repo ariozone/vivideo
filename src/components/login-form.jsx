@@ -20,6 +20,12 @@ export default class LoginForm extends Component {
     account[input.name] = input.value;
     this.setState({ account });
   }
+  validate() {
+    return {
+      username: "Username is required!"
+    };
+  }
+
   render() {
     const { account } = this.state;
     return (
