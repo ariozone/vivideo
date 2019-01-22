@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Input from "./common/input";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -25,17 +26,8 @@ export default class LoginForm extends Component {
         <h1>Login</h1>
 
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              id="username"
-              value={account.username}
-              onChange={this.handleChange}
-            />
-          </div>
+          <Input />
+
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
