@@ -44,6 +44,8 @@ export default class LoginForm extends Component {
   }
 
   validate() {
+    const result = Joi.validate(this.state.account, this.schema);
+    console.log(result);
     const errors = {};
     const { account } = this.state;
     if (account.username.trim() === "") {
