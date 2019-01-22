@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ name, label, value, handleChange }) {
+const Input = ({ name, label, value, onChange }) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
@@ -10,8 +10,9 @@ export default function Input({ name, label, value, handleChange }) {
         name={name}
         id={name}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
     </div>
   );
-}
+};
+export default Input;
