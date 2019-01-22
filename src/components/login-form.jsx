@@ -6,14 +6,16 @@ export default class LoginForm extends Component {
     super(props);
     this.state = {
       account: { username: "", password: "" },
-      error: {}
+      errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validate = this.validate.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
     const errors = this.validate();
+    console.log(errors);
     this.setState({ errors });
     console.log("Submited!");
   }
@@ -23,9 +25,15 @@ export default class LoginForm extends Component {
     this.setState({ account });
   }
   validate() {
-    return {
-      username: "Username is required!"
-    };
+    const errors = {};
+    const { account } = this.state;
+    if (account.username.trim() === "") {
+      errors.username = "Username is required!";
+    }
+    if (account.password.trim() === "") {
+      errors.password = "Password is required!";
+    }
+    return (errors.length = 0 ? null : errors);
   }
 
   render() {
