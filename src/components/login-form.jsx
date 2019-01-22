@@ -17,29 +17,33 @@ export default class LoginForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const errors = this.validate();
-    console.log(errors);
-    this.setState({ errors });
+    this.setState({ errors: errors || {} });
+    if (errors) return;
+
     console.log("Submited!");
   }
+
   handleChange({ currentTarget: input }) {
+    const error = this.validateProperty(input);
+    const errors = { ...this.state.errors };
+    if (error) {
+      errors[input.name] = error;
+    } else delete errors[input.name];
+
     const account = { ...this.state.account };
     account[input.name] = input.value;
-    this.setState({ account });
-  }
-  validate() {
-    const errors = {};
-    const { account } = this.state;
-    if (account.username.trim() === "") {
-      errors.username = "Username is required!";
-    }
-    if (account.password.trim() === "") {
-      errors.password = "Password is required!";
-    }
-    return (errors.length = 0 ? null : errors);
+    this.setState({ account, errors });
   }
 
-  validateProperty() {
-    console.log("");
+  validate() {}
+
+  validateProperty(input) {
+    if (input.name === "username" && input.value.trim() === "") {
+      return "Username is required";
+    }
+    if (input.name === "password" && input.value.trim() === "") {
+      return "Password is required";
+    }
   }
 
   render() {
