@@ -5,7 +5,8 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      account: { username: "", password: "" }
+      account: { username: "", password: "" },
+      error: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,7 +41,6 @@ export default class LoginForm extends Component {
             onChange={this.handleChange}
           />
 
-          <div className="form-check" />
           <button type="submit" className="btn btn-primary">
             Login
           </button>
