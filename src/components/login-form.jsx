@@ -35,7 +35,17 @@ export default class LoginForm extends Component {
     this.setState({ account, errors });
   }
 
-  validate() {}
+  validate() {
+    const errors = {};
+    const { account } = this.state;
+    if (account.username.trim() === "") {
+      errors.username = "Username is required!";
+    }
+    if (account.password.trim() === "") {
+      errors.password = "Password is required!";
+    }
+    return (errors.length = 0 ? null : errors);
+  }
 
   validateProperty(input) {
     if (input.name === "username" && input.value.trim() === "") {
