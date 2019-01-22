@@ -13,9 +13,9 @@ export default class LoginForm extends Component {
     e.preventDefault();
     console.log("Submited!");
   }
-  handleChange(e) {
+  handleChange({ currentTarget: input }) {
     const account = { ...this.state.account };
-    account[e.currentTarget.name] = e.currentTarget.value;
+    account[input.name] = input.value;
     this.setState({ account });
   }
   render() {
