@@ -19,11 +19,21 @@ export default class LoginForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <input type="text" className="form-control" id="username" />
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              value={this.state.account.username}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="text" className="form-control" id="password" />
+            <input
+              type="text"
+              className="form-control"
+              id="password"
+              value={this.state.account.password}
+            />
           </div>
           <div className="form-check" />
           <button type="submit" className="btn btn-primary">
