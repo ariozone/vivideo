@@ -3,7 +3,7 @@ import React from "react";
 export default function Form(props) {
   return (
     <div className="form-group">
-      <label htmlFor="props.name">Username</label>
+      <label htmlFor="props.name">{props.name}</label>
       <input
         type="text"
         className="form-control"
