@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import { Joi } from "joi-browser";
 
 export default class Form extends Component {
+  state = {
+    data: {},
+    errors: {}
+  };
   handleSubmit(e) {
     e.preventDefault();
     const errors = this.validate();
     this.setState({ errors: errors || {} });
     if (errors) return;
 
-    console.log("Submited!");
+    this.doSubmit();
   }
 
   handleChange({ currentTarget: input }) {
@@ -41,8 +45,5 @@ export default class Form extends Component {
     const schema = { [name]: this.schema[name] };
     const { error } = Joi.validate(inputField, schema);
     return !error ? null : error.details[0].message;
-  }
-  render() {
-    return <h1>Form</h1>;
   }
 }
