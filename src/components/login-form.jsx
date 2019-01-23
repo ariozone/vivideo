@@ -48,14 +48,6 @@ export default class LoginForm extends Form {
             onChange={this.handleChange}
             error={errors.password}
           />
-
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={this.validate()}
-          >
-            Login
-          </button>
         </form>
       </div>
     );

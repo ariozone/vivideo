@@ -12,6 +12,7 @@ export default class Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validate = this.validate.bind(this);
     this.validateProperty = this.validateProperty.bind(this);
+    //this.renderButton = this.renderButton.bind(this);
   }
 
   validate() {
@@ -53,5 +54,17 @@ export default class Form extends Component {
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data, errors });
+  }
+
+  renderButton(label) {
+    return (
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={this.validate()}
+      >
+        {label}
+      </button>
+    );
   }
 }
