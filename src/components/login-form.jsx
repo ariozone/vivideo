@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Joi from "joi-browser";
 import Input from "./common/input";
+import Form from "./common/form";
 
-export default class LoginForm extends Component {
+export default class LoginForm extends Form {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,6 +12,7 @@ export default class LoginForm extends Component {
     };
     this.doSubmit = this.doSubmit.bind(this);
   }
+
   schema = {
     username: Joi.string()
       .required()
@@ -19,9 +21,11 @@ export default class LoginForm extends Component {
       .required()
       .label("Password")
   };
+
   doSubmit() {
     console.log("Submitted!");
   }
+
   render() {
     const { data, errors } = this.state;
     return (
