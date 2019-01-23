@@ -27,27 +27,13 @@ export default class LoginForm extends Form {
   }
 
   render() {
-    const { data, errors } = this.state;
     return (
       <div>
         <h1>Login</h1>
 
         <form onSubmit={this.handleSubmit}>
-          <Input
-            name="username"
-            value={data.username}
-            label="Username"
-            onChange={this.handleChange}
-            error={errors.username}
-          />
-
-          <Input
-            name="password"
-            value={data.password}
-            label="Password"
-            onChange={this.handleChange}
-            error={errors.password}
-          />
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password")}
 
           {this.renderButton("Login")}
         </form>
