@@ -48,6 +48,8 @@ export default class LoginForm extends Form {
             onChange={this.handleChange}
             error={errors.password}
           />
+
+          {this.renderButton("Login")}
         </form>
       </div>
     );
