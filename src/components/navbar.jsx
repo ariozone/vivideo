@@ -25,7 +25,6 @@ export default function NavBar() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <NavLink className="nav-link" to="/movies">
-              {" "}
               Movies<span className="sr-only">(current)</span>
             </NavLink>
           </li>
@@ -36,14 +35,17 @@ export default function NavBar() {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/rentals">
-              {" "}
               Rentals
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/login">
-              {" "}
               Login
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/register">
+              Register
             </NavLink>
           </li>
         </ul>
