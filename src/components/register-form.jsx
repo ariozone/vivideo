@@ -12,7 +12,10 @@ export default class RegisterForm extends Form {
     this.doSubmit = this.doSubmit.bind(this);
   }
   schema = {
-    username: Joi.string(),
+    username: Joi.string()
+      .email({ minDomainAtoms: 2 })
+      .required()
+      .label("Username"),
     password: Joi.string(),
     user: Joi.string()
   };
