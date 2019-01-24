@@ -20,7 +20,7 @@ export default class RegisterForm extends Form {
       .min(5)
       .required()
       .label("Password"),
-    user: Joi.string()
+    user: Joi.string().required()
   };
   doSubmit() {
     console.log("Submitted!");
