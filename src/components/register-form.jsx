@@ -7,6 +7,13 @@ export default class RegisterForm extends Form {
     error: {}
   };
   render() {
-    return <h1>Register</h1>;
+    return (
+      <div>
+        <h1>Register</h1>;{this.renderInput("username", "Username", "email")}
+        {this.renderInput("password", "Password", "password")}
+        {this.renderInput("name", "Name")}
+        {this.renderButton("Register")}
+      </div>
+    );
   }
 }
