@@ -16,7 +16,10 @@ export default class RegisterForm extends Form {
       .email({ minDomainAtoms: 2 })
       .required()
       .label("Username"),
-    password: Joi.string(),
+    password: Joi.string()
+      .min(5)
+      .required()
+      .label("Password"),
     user: Joi.string()
   };
   doSubmit() {
