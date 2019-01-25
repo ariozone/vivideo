@@ -42,7 +42,16 @@ export default class MovieForm extends Form {
         <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
-          {this.renderInput("genre", "Genre", "text")}
+          <div className="form-group">
+            <label htmlFor="genre">Genre</label>
+            <select className="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
           {this.renderInput("stock", "Stock", "number")}
           {this.renderInput("rate", "rate", "number")}
           {this.renderButton("Save")}
