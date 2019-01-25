@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import MoviesTable from "./movies-table";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/list-group";
@@ -89,6 +90,9 @@ export default class Movies extends Component {
         </div>
 
         <div className="col">
+          <Link className="btn btn-outline-primary" to="movies/new">
+            Add New
+          </Link>
           <h4 className="m-3">
             There are {filtered.length}{" "}
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
