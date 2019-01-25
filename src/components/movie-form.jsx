@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import { getGenres } from "../services/fakeGenreService";
 
 export default class MovieForm extends Form {
   constructor(props) {
@@ -31,6 +32,10 @@ export default class MovieForm extends Form {
       .min(0)
       .max(10)
   };
+  componentDidMount() {
+    const genres = [{ _id: "", name: "" }, ...getGenres()];
+    this.setState({ genres });
+  }
   doSubmit() {
     this.props.history.push("/");
     console.log("Submitted!");
@@ -43,13 +48,11 @@ export default class MovieForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
           <div className="form-group">
-            <label htmlFor="genre">Genre</label>
-            <select className="form-control" id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <label htmlFor="genres">Genre</label>
+            <select className="form-control" id="genres">
+              {this.state.genres.map(genre => (
+                <option>{genre.name}</option>
+              ))}
             </select>
           </div>
           {this.renderInput("stock", "Stock", "number")}
