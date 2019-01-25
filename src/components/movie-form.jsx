@@ -5,10 +5,10 @@ export default class MovieForm extends Form {
   constructor(props) {
     super(props);
     this.state = {
-      date: { title: "", gerne: "", stock: "", rate: "" },
+      data: { title: "", genre: "", stock: "", rate: "" },
       errors: {}
     };
-    this.handleSave = this.handleSave.bind(this);
+    // this.handleSave = this.handleSave.bind(this);
   }
   handleSave() {
     this.props.history.push("/");
@@ -18,9 +18,16 @@ export default class MovieForm extends Form {
     return (
       <div>
         <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
-        <button className="btn btn-secondary m-2" onClick={this.handleSave}>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("title", "Title", "text")}
+          {this.renderInput("genre", "Genre", "text")}
+          {this.renderInput("stock", "Stock", "number")}
+          {this.renderInput("rate", "rate", "number")}
+          {this.renderButton("Save")}
+          {/* <button className="btn btn-secondary m-2" onClick={this.handleSave}>
           Save
-        </button>
+        </button> */}
+        </form>
       </div>
     );
   }
