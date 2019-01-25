@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-export default class MovieForm extends Component {
+import React from "react";
+import Form from "./common/form";
+
+export default class MovieForm extends Form {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
