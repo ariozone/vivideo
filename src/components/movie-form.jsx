@@ -7,7 +7,8 @@ export default class MovieForm extends Form {
     super(props);
     this.state = {
       data: { title: "", genre: "", stock: "", rate: "" },
-      errors: {}
+      errors: {},
+      genres: []
     };
     this.doSubmit = this.doSubmit.bind(this);
   }
