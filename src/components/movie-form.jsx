@@ -9,7 +9,7 @@ export default class MovieForm extends Form {
       data: { title: "", genre: "", stock: "", rate: "" },
       errors: {}
     };
-    this.handleSave = this.handleSave.bind(this);
+    this.doSubmit = this.doSubmit.bind(this);
   }
   schema = {
     _id: Joi.string(),
@@ -19,9 +19,9 @@ export default class MovieForm extends Form {
     genre: Joi.string()
       .required()
       .label("Genre"),
-    stock: Joi.number("Stock")
+    stock: Joi.number()
+      .label("Stock")
       .required()
-      .label()
       .min(0)
       .max(100),
     rate: Joi.number()
@@ -30,8 +30,9 @@ export default class MovieForm extends Form {
       .min(0)
       .max(10)
   };
-  handleSave() {
+  doSubmit() {
     this.props.history.push("/");
+    console.log("Submitted!");
   }
   render() {
     const { match } = this.props;
@@ -44,9 +45,6 @@ export default class MovieForm extends Form {
           {this.renderInput("stock", "Stock", "number")}
           {this.renderInput("rate", "rate", "number")}
           {this.renderButton("Save")}
-          {/* <button className="btn btn-secondary m-2" onClick={this.handleSave}>
-          Save
-        </button> */}
         </form>
       </div>
     );
