@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "./common/form";
-import { Joi } from "joi-browser";
+import Joi from "joi-browser";
 
 export default class MovieForm extends Form {
   constructor(props) {
@@ -9,13 +9,14 @@ export default class MovieForm extends Form {
       data: { title: "", genre: "", stock: "", rate: "" },
       errors: {}
     };
-    // this.handleSave = this.handleSave.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
   schema = {
-    title: Joi.String(),
-    genre: Joi.String(),
-    stock: Joi.Number(),
-    rate: Joi.Number()
+    _id: Joi.string(),
+    title: Joi.string().required(),
+    genre: Joi.string().required(),
+    stock: Joi.number(),
+    rate: Joi.number()
   };
   handleSave() {
     this.props.history.push("/");
