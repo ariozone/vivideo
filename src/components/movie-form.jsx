@@ -15,7 +15,10 @@ export default class MovieForm extends Form {
     _id: Joi.string(),
     title: Joi.string().required(),
     genre: Joi.string().required(),
-    stock: Joi.number(),
+    stock: Joi.number()
+      .required()
+      .min(0)
+      .max(100),
     rate: Joi.number()
   };
   handleSave() {
