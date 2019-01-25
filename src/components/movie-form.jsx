@@ -13,13 +13,22 @@ export default class MovieForm extends Form {
   }
   schema = {
     _id: Joi.string(),
-    title: Joi.string().required(),
-    genre: Joi.string().required(),
-    stock: Joi.number()
+    title: Joi.string()
       .required()
+      .label("Title"),
+    genre: Joi.string()
+      .required()
+      .label("Genre"),
+    stock: Joi.number("Stock")
+      .required()
+      .label()
       .min(0)
       .max(100),
     rate: Joi.number()
+      .required()
+      .label("Rate")
+      .min(0)
+      .max(10)
   };
   handleSave() {
     this.props.history.push("/");
