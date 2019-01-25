@@ -4,6 +4,10 @@ import Form from "./common/form";
 export default class MovieForm extends Form {
   constructor(props) {
     super(props);
+    this.state = {
+      date: { title: "", gerne: "", stock: "", rate: "" },
+      errors: {}
+    };
     this.handleSave = this.handleSave.bind(this);
   }
   handleSave() {
