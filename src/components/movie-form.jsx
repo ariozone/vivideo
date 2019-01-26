@@ -50,28 +50,12 @@ export default class MovieForm extends Form {
 
           <div className="form-group">
             <label htmlFor="genre">Genre</label>
-            <select name="genre" id="genre" className="form-control">
-              <option value="" />
-              {this.state.genres.map(option => (
-                <option key={option._id} value={option._id}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-            {this.error && (
-              <div className="alert alert-danger">{this.error}</div>
-            )}
-          </div>
-          {/* <div className="form-group">
-            <label htmlFor="genre">Genre</label>
             <select className="form-control" name="genre" id="genre">
-              {this.state.genres.map(genre => (
-                <option key={genre._id} value={genre._id}>
-                  {genre.name}
-                </option>
-              ))}
+              {this.state.genres.map(genre => {
+                return <option value={genre.name}>{genre.name}</option>;
+              })}
             </select>
-          </div> */}
+          </div>
           {this.renderInput("stock", "Stock", "number")}
           {this.renderInput("rate", "rate", "number")}
           {this.renderButton("Save")}
