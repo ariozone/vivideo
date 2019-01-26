@@ -47,15 +47,7 @@ export default class MovieForm extends Form {
         <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
-
-          <div className="form-group">
-            <label htmlFor="genre">Genre</label>
-            <select className="form-control" name="genre" id="genre">
-              {this.state.genres.map(genre => {
-                return <option value={genre.name}>{genre.name}</option>;
-              })}
-            </select>
-          </div>
+          {this.renderSelect("genre", "Genre", this.state.genres)}
           {this.renderInput("stock", "Stock", "number")}
           {this.renderInput("rate", "rate", "number")}
           {this.renderButton("Save")}

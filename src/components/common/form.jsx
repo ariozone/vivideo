@@ -88,7 +88,7 @@ export default class Form extends Component {
         label={label}
         items={items}
         onChange={this.handleChange}
-        error={this.state.error[name]}
+        error={this.state.errors[name]}
       />
     );
   }
