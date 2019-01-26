@@ -33,7 +33,7 @@ export default class MovieForm extends Form {
       .max(10)
   };
   componentDidMount() {
-    const genres = [{ _id: "", name: "" }, ...getGenres()];
+    const genres = getGenres();
     this.setState({ genres });
   }
   doSubmit() {
@@ -47,14 +47,31 @@ export default class MovieForm extends Form {
         <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
+
           <div className="form-group">
-            <label htmlFor="genres">Genre</label>
-            <select className="form-control" id="genres">
-              {this.state.genres.map(genre => (
-                <option>{genre.name}</option>
+            <label htmlFor="genre">Genre</label>
+            <select name="genre" id="genre" className="form-control">
+              <option value="" />
+              {this.state.genres.map(option => (
+                <option key={option._id} value={option._id}>
+                  {option.name}
+                </option>
               ))}
             </select>
+            {this.error && (
+              <div className="alert alert-danger">{this.error}</div>
+            )}
           </div>
+          {/* <div className="form-group">
+            <label htmlFor="genre">Genre</label>
+            <select className="form-control" name="genre" id="genre">
+              {this.state.genres.map(genre => (
+                <option key={genre._id} value={genre._id}>
+                  {genre.name}
+                </option>
+              ))}
+            </select>
+          </div> */}
           {this.renderInput("stock", "Stock", "number")}
           {this.renderInput("rate", "rate", "number")}
           {this.renderButton("Save")}
