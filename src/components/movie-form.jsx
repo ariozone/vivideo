@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
-import { getMovie } from "../services/fakeMovieService";
+import { getMovie, saveMovie } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 
 export default class MovieForm extends Form {
@@ -56,6 +56,7 @@ export default class MovieForm extends Form {
     };
   }
   doSubmit() {
+    saveMovie(this.state.data);
     this.props.history.push("/");
     console.log("Submitted!");
   }
