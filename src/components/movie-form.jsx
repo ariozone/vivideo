@@ -13,6 +13,7 @@ export default class MovieForm extends Form {
       genres: []
     };
     this.doSubmit = this.doSubmit.bind(this);
+    this.createViewModel = this.createViewModel.bind(this);
   }
   schema = {
     _id: Joi.string(),
@@ -43,9 +44,17 @@ export default class MovieForm extends Form {
     const movie = getMovie(selectedMovie);
     !movie
       ? this.props.history.replace("/not-found")
-      : this.setState({ data: movie });
+      : this.setState({ data: this.createViewModel(movie) });
   }
-
+  createViewModel(movie) {
+    return {
+      _id: movie._id,
+      title: movie.title,
+      genre: movie.genre._id,
+      stock: movie.numberInStock,
+      rate: movie.dailyRentalRate
+    };
+  }
   doSubmit() {
     this.props.history.push("/");
     console.log("Submitted!");
