@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import { getMovie } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 
 export default class MovieForm extends Form {
@@ -32,12 +33,17 @@ export default class MovieForm extends Form {
       .min(0)
       .max(10)
   };
+
   componentDidMount() {
     const genres = getGenres();
     this.setState({ genres });
-    const movieId = this.props.match.id;
-    if (movieId !== "new") return;
+
+    const selectedMovie = this.props.match.id;
+    if (selectedMovie === "new") return;
+    const movie = getMovie(selectedMovie);
+    // this.setState({ data: movie });
   }
+
   doSubmit() {
     this.props.history.push("/");
     console.log("Submitted!");
