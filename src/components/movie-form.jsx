@@ -35,6 +35,8 @@ export default class MovieForm extends Form {
   componentDidMount() {
     const genres = getGenres();
     this.setState({ genres });
+    const movieId = this.props.match.id;
+    if (movieId !== "new") return;
   }
   doSubmit() {
     this.props.history.push("/");
@@ -49,7 +51,7 @@ export default class MovieForm extends Form {
           {this.renderInput("title", "Title", "text")}
           {this.renderSelect("genre", "Genre", this.state.genres)}
           {this.renderInput("stock", "Stock", "number")}
-          {this.renderInput("rate", "rate", "number")}
+          {this.renderInput("rate", "Rate", "number")}
           {this.renderButton("Save")}
         </form>
       </div>
