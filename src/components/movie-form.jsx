@@ -38,10 +38,12 @@ export default class MovieForm extends Form {
     const genres = getGenres();
     this.setState({ genres });
 
-    const selectedMovie = this.props.match.id;
+    const selectedMovie = this.props.match.params.id;
     if (selectedMovie === "new") return;
     const movie = getMovie(selectedMovie);
-    // this.setState({ data: movie });
+    !movie
+      ? this.props.history.replace("/not-found")
+      : this.setState({ data: movie });
   }
 
   doSubmit() {
