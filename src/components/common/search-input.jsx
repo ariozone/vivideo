@@ -4,10 +4,11 @@ export default function SearchInput(props) {
     <div className="input-group mb-3">
       <input
         type="text"
+        name="search"
         className="form-control"
-        placeholder="Username"
-        aria-label="Username"
-        aria-describedby="basic-addon1"
+        placeholder="Search..."
+        aria-label="Search"
+        onChange={event => this.props.onChange(event.target.props.value)}
       />
     </div>
   );

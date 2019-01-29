@@ -7,6 +7,7 @@ import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+import SearchInput from "./common/search-input";
 
 export default class Movies extends Component {
   constructor(props) {
@@ -98,7 +99,7 @@ export default class Movies extends Component {
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h4>
-
+          <SearchInput onChange={this.handleSearch} />
           <MoviesTable
             movies={movies}
             onLike={this.handleLike}
