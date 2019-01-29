@@ -7,9 +7,9 @@ export default function Select(props) {
       <label htmlFor={name}>{label}</label>
       <select name={name} id={name} {...rest} className="form-control">
         <option value="" />
-        {items.map(genre => (
-          <option key={genre._id} value={genre.name}>
-            {genre.name}
+        {items.map(option => (
+          <option key={option._id} value={option._id}>
+            {option.name}
           </option>
         ))}
       </select>

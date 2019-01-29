@@ -8,7 +8,7 @@ export default class MovieForm extends Form {
   constructor(props) {
     super(props);
     this.state = {
-      data: { title: "", genre: "", stock: "", rate: "" },
+      data: { title: "", genreId: "", numberInStock: "", dailyRentalRate: "" },
       errors: {},
       genres: []
     };
@@ -20,15 +20,15 @@ export default class MovieForm extends Form {
     title: Joi.string()
       .required()
       .label("Title"),
-    genre: Joi.string()
+    genreId: Joi.string()
       .required()
       .label("Genre"),
-    stock: Joi.number()
+    numberInStock: Joi.number()
       .label("Stock")
       .required()
       .min(0)
       .max(100),
-    rate: Joi.number()
+    dailyRentalRate: Joi.number()
       .required()
       .label("Rate")
       .min(0)
@@ -42,17 +42,16 @@ export default class MovieForm extends Form {
     const selectedMovie = this.props.match.params.id;
     if (selectedMovie === "new") return;
     const movie = getMovie(selectedMovie);
-    !movie
-      ? this.props.history.replace("/not-found")
-      : this.setState({ data: this.createViewModel(movie) });
+    if (!movie) return this.props.history.replace("/not-found");
+    this.setState({ data: this.createViewModel(movie) });
   }
   createViewModel(movie) {
     return {
       _id: movie._id,
       title: movie.title,
-      genre: movie.genre._id,
-      stock: movie.numberInStock,
-      rate: movie.dailyRentalRate
+      genreId: movie.genre._id,
+      numberInStock: movie.numberInStock,
+      dailyRentalRate: movie.dailyRentalRate
     };
   }
   doSubmit() {
@@ -67,9 +66,9 @@ export default class MovieForm extends Form {
         <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
-          {this.renderSelect("genre", "Genre", this.state.genres)}
-          {this.renderInput("stock", "Stock", "number")}
-          {this.renderInput("rate", "Rate", "number")}
+          {this.renderSelect("genreId", "Genre", this.state.genres)}
+          {this.renderInput("numberInStock", "Stock", "number")}
+          {this.renderInput("dailyRentalRate", "Rate", "number")}
           {this.renderButton("Save")}
         </form>
       </div>
