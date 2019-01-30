@@ -56,7 +56,7 @@ export default class Movies extends Component {
   }
 
   handleSelect(genre) {
-    this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ selectedGenre: genre, currentPage: 1, searchInput: "" });
   }
 
   handleSort(sortColumn) {
