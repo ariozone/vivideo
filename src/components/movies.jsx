@@ -18,7 +18,8 @@ export default class Movies extends Component {
       pageSize: 4,
       currentPage: 1,
       selectedGenre: "All Genres",
-      sortColumn: { path: "title", order: "asc" }
+      sortColumn: { path: "title", order: "asc" },
+      searchInput: ""
     };
 
     this.handleDelete = this.handleDelete.bind(this);
