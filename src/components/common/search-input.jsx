@@ -5,10 +5,11 @@ export default function SearchInput(props) {
       <input
         type="text"
         name="search"
+        value={props.value}
         className="form-control"
         placeholder="Search..."
         aria-label="Search"
-        onChange={event => this.props.onChange(event.target.props.value)}
+        onChange={event => props.onChange(event.target.value)}
       />
     </div>
   );

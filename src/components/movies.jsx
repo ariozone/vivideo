@@ -27,6 +27,7 @@ export default class Movies extends Component {
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleSort = this.handleSort.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +61,14 @@ export default class Movies extends Component {
 
   handleSort(sortColumn) {
     this.setState({ sortColumn });
+  }
+
+  handleSearch(searchKeyword) {
+    this.setState({
+      searchInput: searchKeyword,
+      currentPage: 1,
+      selectedGenre: ""
+    });
   }
 
   render() {
@@ -100,7 +109,10 @@ export default class Movies extends Component {
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h4>
-          <SearchInput onChange={this.handleSearch} />
+          <SearchInput
+            onChange={this.handleSearch}
+            value={this.state.searchInput}
+          />
           <MoviesTable
             movies={movies}
             onLike={this.handleLike}
