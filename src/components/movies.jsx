@@ -7,6 +7,7 @@ import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
+import SearchInput from "./common/search-input";
 
 export default class Movies extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ export default class Movies extends Component {
       pageSize: 4,
       currentPage: 1,
       selectedGenre: "All Genres",
-      sortColumn: { path: "title", order: "asc" }
+      sortColumn: { path: "title", order: "asc" },
+      searchInput: ""
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -25,6 +27,7 @@ export default class Movies extends Component {
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleSort = this.handleSort.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -53,11 +56,19 @@ export default class Movies extends Component {
   }
 
   handleSelect(genre) {
-    this.setState({ selectedGenre: genre, currentPage: 1 });
+    this.setState({ selectedGenre: genre, currentPage: 1, searchInput: "" });
   }
 
   handleSort(sortColumn) {
     this.setState({ sortColumn });
+  }
+
+  handleSearch(searchKeyword) {
+    this.setState({
+      searchInput: searchKeyword,
+      currentPage: 1,
+      selectedGenre: ""
+    });
   }
 
   render() {
@@ -67,13 +78,19 @@ export default class Movies extends Component {
       currentPage,
       genres,
       selectedGenre,
-      sortColumn
+      sortColumn,
+      searchInput
     } = this.state;
 
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
-        : allMovies;
+    let filtered = allMovies;
+    searchInput
+      ? (filtered = allMovies.filter(movie =>
+          movie.title.toUpperCase().startsWith(searchInput.toUpperCase())
+        ))
+      : (filtered =
+          selectedGenre && selectedGenre._id
+            ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
+            : allMovies);
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
@@ -98,7 +115,10 @@ export default class Movies extends Component {
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h4>
-
+          <SearchInput
+            onChange={this.handleSearch}
+            value={this.state.searchInput}
+          />
           <MoviesTable
             movies={movies}
             onLike={this.handleLike}
