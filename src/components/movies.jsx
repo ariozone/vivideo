@@ -84,7 +84,9 @@ export default class Movies extends Component {
 
     let filtered = allMovies;
     searchInput
-      ? (filtered = searchInput)
+      ? (filtered = allMovies.filter(movie =>
+          movie.title.toUpperCase().startsWith(searchInput.toUpperCase())
+        ))
       : (filtered =
           selectedGenre && selectedGenre._id
             ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
