@@ -78,13 +78,17 @@ export default class Movies extends Component {
       currentPage,
       genres,
       selectedGenre,
-      sortColumn
+      sortColumn,
+      searchInput
     } = this.state;
 
-    const filtered =
-      selectedGenre && selectedGenre._id
-        ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
-        : allMovies;
+    let filtered = allMovies;
+    searchInput
+      ? (filtered = searchInput)
+      : (filtered =
+          selectedGenre && selectedGenre._id
+            ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
+            : allMovies);
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
