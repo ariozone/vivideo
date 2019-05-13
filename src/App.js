@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Movies from "./components/movies";
 import { Route, Switch, Redirect } from "react-router-dom";
+import Movies from "./components/movies";
 import Customers from "./components/customers";
 import MovieForm from "./components/movie-form";
 import NotFound from "./components/not-found";
