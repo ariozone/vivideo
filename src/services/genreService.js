@@ -1,7 +1,7 @@
-import http from "httpService"
+import http from "./httpServices"
 
-const endPoint = "http://localhost:3900/api/genres"
+// const endPoint = "http://localhost:3900/api/genres"
 
 export function getGenres() {
-  http.get(endPoint)
+  return http.get("http://localhost:3900/api/genres")
 }

@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import MoviesTable from "./movies-table";
-import Pagination from "./common/pagination";
-import ListGroup from "./common/list-group";
-import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
-import { paginate } from "../utils/paginate";
-import _ from "lodash";
-import SearchInput from "./common/search-input";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import MoviesTable from "./movies-table"
+import Pagination from "./common/pagination"
+import ListGroup from "./common/list-group"
+import { getMovies } from "../services/fakeMovieService"
+import { getGenres } from "../services/genreService"
+import { paginate } from "../utils/paginate"
+import _ from "lodash"
+import SearchInput from "./common/search-input"
 
 export default class Movies extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       movies: [],
       genres: [],
@@ -20,47 +20,48 @@ export default class Movies extends Component {
       selectedGenre: "All Genres",
       sortColumn: { path: "title", order: "asc" },
       searchInput: ""
-    };
+    }
 
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleLike = this.handleLike.bind(this);
-    this.handlePageChanges = this.handlePageChanges.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleSort = this.handleSort.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleLike = this.handleLike.bind(this)
+    this.handlePageChanges = this.handlePageChanges.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
+    this.handleSort = this.handleSort.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
-  componentDidMount() {
-    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
+  async componentDidMount() {
+    const response = await getGenres()
+    const genres = [{ _id: "", name: "All Genres" }, ...response.data]
     this.setState({
       movies: getMovies(),
       genres
-    });
+    })
   }
 
   handleDelete(movie) {
-    const movies = [...this.state.movies].filter(m => m !== movie);
-    this.setState({ movies });
+    const movies = [...this.state.movies].filter(m => m !== movie)
+    this.setState({ movies })
   }
 
   handleLike(movie) {
-    const movies = [...this.state.movies];
-    const index = movies.indexOf(movie);
-    movies[index] = { ...movies[index] };
-    movies[index].liked = !movies[index].liked;
-    this.setState({ movies });
+    const movies = [...this.state.movies]
+    const index = movies.indexOf(movie)
+    movies[index] = { ...movies[index] }
+    movies[index].liked = !movies[index].liked
+    this.setState({ movies })
   }
 
   handlePageChanges(page) {
-    this.setState({ currentPage: page });
+    this.setState({ currentPage: page })
   }
 
   handleSelect(genre) {
-    this.setState({ selectedGenre: genre, currentPage: 1, searchInput: "" });
+    this.setState({ selectedGenre: genre, currentPage: 1, searchInput: "" })
   }
 
   handleSort(sortColumn) {
-    this.setState({ sortColumn });
+    this.setState({ sortColumn })
   }
 
   handleSearch(searchKeyword) {
@@ -68,7 +69,7 @@ export default class Movies extends Component {
       searchInput: searchKeyword,
       currentPage: 1,
       selectedGenre: ""
-    });
+    })
   }
 
   render() {
@@ -80,9 +81,9 @@ export default class Movies extends Component {
       selectedGenre,
       sortColumn,
       searchInput
-    } = this.state;
+    } = this.state
 
-    let filtered = allMovies;
+    let filtered = allMovies
     searchInput
       ? (filtered = allMovies.filter(movie =>
           movie.title.toUpperCase().startsWith(searchInput.toUpperCase())
@@ -90,11 +91,11 @@ export default class Movies extends Component {
       : (filtered =
           selectedGenre && selectedGenre._id
             ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
-            : allMovies);
+            : allMovies)
 
-    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
 
-    const movies = paginate(sorted, currentPage, pageSize);
+    const movies = paginate(sorted, currentPage, pageSize)
 
     return (
       <div className="row">
@@ -135,6 +136,6 @@ export default class Movies extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
