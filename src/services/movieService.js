@@ -1,6 +1,11 @@
 import http from "./httpServices"
 
+const url = "http://localhost:3900/api/movies"
+
 export function getMovies() {
-  const endPoint = "http://localhost:3900/api/movies"
-  return http.get(endPoint)
+  return http.get(url)
+}
+
+export function deleteMovie(movieId) {
+  return http.delete(url + "/" + movieId)
 }
