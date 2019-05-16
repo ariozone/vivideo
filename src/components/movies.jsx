@@ -8,6 +8,7 @@ import { getGenres } from "../services/genreService"
 import { paginate } from "../utils/paginate"
 import _ from "lodash"
 import SearchInput from "./common/search-input"
+import { toast } from "react-toastify"
 
 export default class Movies extends Component {
   constructor(props) {
@@ -44,7 +45,13 @@ export default class Movies extends Component {
     const moviesBeforeDelete = this.state.movies
     const movies = moviesBeforeDelete.filter(m => m !== movie)
     this.setState({ movies })
-    await deleteMovie(movie.id)
+    try {
+      await deleteMovie(movie._id)
+    } catch (error) {
+      if (error.response && error.response.status === 404)
+        toast.error("This movie has been deleted already!")
+      this.setState({ movies: moviesBeforeDelete })
+    }
   }
 
   handleLike(movie) {
