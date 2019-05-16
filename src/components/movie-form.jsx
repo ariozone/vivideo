@@ -2,7 +2,7 @@ import React from "react"
 import Form from "./common/form"
 import Joi from "joi-browser"
 import { getMovie, saveMovie } from "../services/fakeMovieService"
-import { getGenres } from "../services/fakeGenreService"
+import { getGenres } from "../services/genreService"
 
 export default class MovieForm extends Form {
   constructor(props) {
@@ -35,8 +35,8 @@ export default class MovieForm extends Form {
       .max(10)
   }
 
-  componentDidMount() {
-    const genres = getGenres()
+  async componentDidMount() {
+    const { data: genres } = await getGenres()
     this.setState({ genres })
 
     const selectedMovie = this.props.match.params.id
