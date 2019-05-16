@@ -41,11 +41,14 @@ export default class MovieForm extends Form {
 
     const selectedMovie = this.props.match.params.id
     if (selectedMovie === "new") return
-    const { data: movie } = await getMovie(selectedMovie)
-    console.log(movie._id, selectedMovie)
-    if (movie._id !== selectedMovie)
-      return this.props.history.replace("/not-found")
-    this.setState({ data: this.createViewModel(movie) })
+
+    try {
+      const { data: movie } = await getMovie(selectedMovie)
+      this.setState({ data: this.createViewModel(movie) })
+    } catch (error) {
+      if (error.response && error.response.status === 404)
+        return this.props.history.replace("/not-found")
+    }
   }
 
   createViewModel(movie) {
