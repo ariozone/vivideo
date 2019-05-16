@@ -1,11 +1,10 @@
 import http from "./httpServices"
-
-const url = "http://localhost:3900/api/movies"
+import { url } from "../config.json"
 
 export function getMovies() {
-  return http.get(url)
+  return http.get(url + "/movies")
 }
 
 export function deleteMovie(movieId) {
-  return http.delete(url + "/" + movieId)
+  return http.delete(url + "/movies/" + movieId)
 }
