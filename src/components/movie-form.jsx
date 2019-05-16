@@ -1,7 +1,7 @@
 import React from "react"
 import Form from "./common/form"
 import Joi from "joi-browser"
-import { getMovie, saveMovie } from "../services/fakeMovieService"
+import { getMovie, saveMovie } from "../services/movieService"
 import { getGenres } from "../services/genreService"
 
 export default class MovieForm extends Form {
@@ -41,10 +41,13 @@ export default class MovieForm extends Form {
 
     const selectedMovie = this.props.match.params.id
     if (selectedMovie === "new") return
-    const movie = getMovie(selectedMovie)
-    if (!movie) return this.props.history.replace("/not-found")
+    const { data: movie } = await getMovie(selectedMovie)
+    console.log(movie._id, selectedMovie)
+    if (movie._id !== selectedMovie)
+      return this.props.history.replace("/not-found")
     this.setState({ data: this.createViewModel(movie) })
   }
+
   createViewModel(movie) {
     return {
       _id: movie._id,
@@ -54,6 +57,7 @@ export default class MovieForm extends Form {
       dailyRentalRate: movie.dailyRentalRate
     }
   }
+
   doSubmit() {
     saveMovie(this.state.data)
     this.props.history.push("/")

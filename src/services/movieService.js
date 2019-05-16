@@ -10,5 +10,6 @@ export function deleteMovie(movieId) {
 }
 
 export function getMovie(movieId) {
-  return http.get(url + "/" + movieId)
+  return http.get(url + "/movies/" + movieId)
 }
+export function saveMovie() {}
