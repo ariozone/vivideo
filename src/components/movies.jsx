@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import MoviesTable from "./movies-table"
 import Pagination from "./common/pagination"
 import ListGroup from "./common/list-group"
-import { getMovies } from "../services/movieService"
+import { getMovies, deleteMovie } from "../services/movieService"
 import { getGenres } from "../services/genreService"
 import { paginate } from "../utils/paginate"
 import _ from "lodash"
@@ -40,9 +40,11 @@ export default class Movies extends Component {
     })
   }
 
-  handleDelete(movie) {
-    const movies = [...this.state.movies].filter(m => m !== movie)
+  async handleDelete(movie) {
+    const moviesBeforeDelete = this.state.movies
+    const movies = moviesBeforeDelete.filter(m => m !== movie)
     this.setState({ movies })
+    await deleteMovie(movie.id)
   }
 
   handleLike(movie) {
