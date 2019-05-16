@@ -35,10 +35,7 @@ export default class MovieForm extends Form {
       .max(10)
   }
 
-  async componentDidMount() {
-    const { data: genres } = await getGenres()
-    this.setState({ genres })
-
+  async populateMovie() {
     const selectedMovie = this.props.match.params.id
     if (selectedMovie === "new") return
 
@@ -49,6 +46,13 @@ export default class MovieForm extends Form {
       if (error.response && error.response.status === 404)
         return this.props.history.replace("/not-found")
     }
+  }
+
+  async componentDidMount() {
+    const { data: genres } = await getGenres()
+    this.setState({ genres })
+
+    await this.populateMovie()
   }
 
   createViewModel(movie) {
