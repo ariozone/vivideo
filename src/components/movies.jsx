@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import MoviesTable from "./movies-table"
 import Pagination from "./common/pagination"
 import ListGroup from "./common/list-group"
-import { getMovies } from "../services/fakeMovieService"
+import { getMovies } from "../services/movieService"
 import { getGenres } from "../services/genreService"
 import { paginate } from "../utils/paginate"
 import _ from "lodash"
@@ -33,8 +33,9 @@ export default class Movies extends Component {
   async componentDidMount() {
     const response = await getGenres()
     const genres = [{ _id: "", name: "All Genres" }, ...response.data]
+    const { data: movies } = await getMovies()
     this.setState({
-      movies: getMovies(),
+      movies,
       genres
     })
   }
