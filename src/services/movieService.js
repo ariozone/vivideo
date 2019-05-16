@@ -8,3 +8,7 @@ export function getMovies() {
 export function deleteMovie(movieId) {
   return http.delete(url + "/movies/" + movieId)
 }
+
+export function getMovie(movieId) {
+  return http.get(url + "/" + movieId)
+}
