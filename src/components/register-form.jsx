@@ -1,15 +1,15 @@
-import React from "react";
-import Joi from "joi-browser";
-import Form from "./common/form";
+import React from "react"
+import Joi from "joi-browser"
+import Form from "./common/form"
 
 export default class RegisterForm extends Form {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: { username: "", password: "", user: "" },
       errors: {}
-    };
-    this.doSubmit = this.doSubmit.bind(this);
+    }
+    this.doSubmit = this.doSubmit.bind(this)
   }
   schema = {
     username: Joi.string()
@@ -21,10 +21,12 @@ export default class RegisterForm extends Form {
       .required()
       .label("Password"),
     user: Joi.string().required()
-  };
-  doSubmit() {
-    console.log("Submitted!");
   }
+
+  doSubmit() {
+    console.log("Submitted!")
+  }
+
   render() {
     return (
       <div>
@@ -36,6 +38,6 @@ export default class RegisterForm extends Form {
           {this.renderButton("Register")}
         </form>
       </div>
-    );
+    )
   }
 }
