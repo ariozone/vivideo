@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function ListGroup(props) {
   const {
@@ -7,7 +7,7 @@ export default function ListGroup(props) {
     valueProperty,
     onGenreSelect,
     selectedGenre
-  } = props;
+  } = props
   return (
     <ul className="list-group m-2">
       {items.map(item => (
@@ -24,9 +24,9 @@ export default function ListGroup(props) {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 ListGroup.defaultProps = {
   textProperty: "name",
   valueProperty: "_id"
-};
+}
