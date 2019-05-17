@@ -66,8 +66,8 @@ export default class MovieForm extends Form {
     }
   }
 
-  doSubmit() {
-    saveMovie(this.state.data)
+  async doSubmit() {
+    await saveMovie(this.state.data)
     this.props.history.push("/")
     toast.success("Submitted!")
   }
