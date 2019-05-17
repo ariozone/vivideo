@@ -3,6 +3,7 @@ import Form from "./common/form"
 import Joi from "joi-browser"
 import { getMovie, saveMovie } from "../services/movieService"
 import { getGenres } from "../services/genreService"
+import { toast } from "react-toastify"
 
 export default class MovieForm extends Form {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class MovieForm extends Form {
     this.doSubmit = this.doSubmit.bind(this)
     this.createViewModel = this.createViewModel.bind(this)
   }
+
   schema = {
     _id: Joi.string(),
     title: Joi.string()
@@ -36,10 +38,9 @@ export default class MovieForm extends Form {
   }
 
   async populateMovie() {
-    const selectedMovie = this.props.match.params.id
-    if (selectedMovie === "new") return
-
     try {
+      const selectedMovie = this.props.match.params.id
+      if (selectedMovie === "new") return
       const { data: movie } = await getMovie(selectedMovie)
       this.setState({ data: this.createViewModel(movie) })
     } catch (error) {
@@ -68,13 +69,13 @@ export default class MovieForm extends Form {
   doSubmit() {
     saveMovie(this.state.data)
     this.props.history.push("/")
-    console.log("Submitted!")
+    toast.success("Submitted!")
   }
+
   render() {
-    const { match } = this.props
     return (
       <div>
-        <h1 className="m-2">The Movie Id is: {match.params.id}</h1>
+        <h1 className="m-2">Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
