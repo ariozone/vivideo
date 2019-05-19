@@ -1,3 +1,58 @@
+# vivideo
+##### Is a video rental service application.
+
+## Technologies
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+- React
+- React Router Dom
+- axios
+
+## Tools
+- create-react-app
+- Font-awesome
+- joi
+- Joi-browser 
+- prop-types
+- lodash
+- JSON Web Token
+- config
+- axios interceptors
+
+## Usage
+
+#### Setting up the Backend:
+##### Clone and install dependencies.
+```
+git clone https://github.com/ariozone/vivideo-api.git
+
+cd vivideo-api/
+npm install
+```
+##### Run the back-end:
+```
+node index.js
+```
+#### Running the Front-end:
+##### Clone and install dependencies.
+```
+cd ..
+git clone https://github.com/ariozone/vivideo.git
+cd vivideo/
+npm install
+```
+##### Run the App:
+```
+npm start
+```
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
