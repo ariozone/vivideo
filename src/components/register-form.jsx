@@ -1,6 +1,7 @@
 import React from "react"
 import Joi from "joi-browser"
 import Form from "./common/form"
+import { register } from "../services/userServices"
 
 export default class RegisterForm extends Form {
   constructor(props) {
