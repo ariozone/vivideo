@@ -28,9 +28,18 @@ export default class RegisterForm extends Form {
   }
 
   doSubmit = async () => {
-    await register(this.state.data)
-    this.props.history.push("/")
-    toast.success("You are now registered!")
+    try {
+      await register(this.state.data)
+      this.props.history.push("/")
+      toast.success("You are now registered!")
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
+        const errors = { ...this.state.errors }
+        errors.email = "User is already registered!"
+        errors.password = err.response.data
+        this.setState({ errors })
+      }
+    }
   }
 
   render() {
