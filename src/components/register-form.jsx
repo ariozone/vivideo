@@ -32,7 +32,7 @@ export default class RegisterForm extends Form {
       const response = await register(this.state.data)
       console.log(response)
       localStorage.setItem("token", response.headers["x-auth-token"])
-      this.props.history.push("/")
+      window.location = "/"
       toast.success("You are now registered and logged in!")
     } catch (err) {
       if (err.response && err.response.status === 400) {
