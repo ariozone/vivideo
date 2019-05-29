@@ -118,7 +118,7 @@ export default class Movies extends Component {
         </div>
 
         <div className="col">
-          <Link className="btn btn-outline-primary" to="movies/new">
+          <Link className="btn btn-outline-secondary" to="movies/new">
             Add New
           </Link>
           <h4 className="m-3">
