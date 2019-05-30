@@ -118,9 +118,6 @@ export default class Movies extends Component {
         </div>
 
         <div className="col">
-          <Link className="btn btn-outline-secondary" to="movies/new">
-            Add New
-          </Link>
           <h4 className="m-3">
             There are {filtered.length}{" "}
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
@@ -145,6 +142,9 @@ export default class Movies extends Component {
             currentPage={currentPage}
           />
         </div>
+        <Link className="btn btn-outline-secondary btn-block" to="movies/new">
+          Add New
+        </Link>
       </div>
     )
   }

@@ -16,7 +16,7 @@ export default function ListGroup(props) {
           onClick={() => onGenreSelect(item)}
           className={
             selectedGenre === item
-              ? "list-group-item bg-dark"
+              ? "list-group-item active bg-dark"
               : "list-group-item bg-secondary"
           }
         >
