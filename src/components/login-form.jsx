@@ -1,15 +1,16 @@
-import React from "react";
-import Joi from "joi-browser";
-import Form from "./common/form";
+import React from "react"
+import Joi from "joi-browser"
+import Form from "./common/form"
+import { login } from "../services/authenticationService"
 
 export default class LoginForm extends Form {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: { username: "", password: "" },
       errors: {}
-    };
-    this.doSubmit = this.doSubmit.bind(this);
+    }
+    this.doSubmit = this.doSubmit.bind(this)
   }
 
   schema = {
@@ -19,10 +20,12 @@ export default class LoginForm extends Form {
     password: Joi.string()
       .required()
       .label("Password")
-  };
+  }
 
-  doSubmit() {
-    console.log("Submitted!");
+  async doSubmit() {
+    const { username, password } = this.state.data
+    const result = await login(username, password)
+    console.log(result)
   }
 
   render() {
@@ -37,6 +40,6 @@ export default class LoginForm extends Form {
           {this.renderButton("Login")}
         </form>
       </div>
-    );
+    )
   }
 }

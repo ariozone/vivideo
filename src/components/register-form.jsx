@@ -30,7 +30,6 @@ export default class RegisterForm extends Form {
   doSubmit = async () => {
     try {
       const response = await register(this.state.data)
-      console.log(response)
       localStorage.setItem("token", response.headers["x-auth-token"])
       window.location = "/"
       toast.success("You are now registered and logged in!")
