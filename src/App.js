@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Route, Switch, Redirect } from "react-router-dom"
+import jwtDecode from "jwt-decode"
 import Movies from "./components/movies"
 import Customers from "./components/customers"
 import MovieForm from "./components/movie-form"
@@ -13,6 +14,9 @@ import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
 
 class App extends Component {
+  state = {
+    user: {}
+  }
   render() {
     return (
       <React.Fragment>
