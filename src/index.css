@@ -19,6 +19,14 @@ code {
   background-color: gray !important;
 }
 
+.active {
+  border-color: dark !important;
+}
+
+.page-link {
+  border-color: gray !important;
+}
+
 .pointer {
   cursor: pointer;
 }

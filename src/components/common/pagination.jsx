@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import _ from "lodash";
-import PropTypes from "prop-types";
+import React from "react"
+import _ from "lodash"
+import PropTypes from "prop-types"
 
 export default function Pagination(props) {
-  const { items, pageSize, onPageChanges, currentPage } = props;
-  const numberOfPages = items / pageSize;
-  const pages = _.range(1, numberOfPages + 1);
-  if (numberOfPages <= 1) return null;
+  const { items, pageSize, onPageChanges, currentPage } = props
+  const numberOfPages = items / pageSize
+  const pages = _.range(1, numberOfPages + 1)
+  if (numberOfPages <= 1) return null
 
   return (
     <nav aria-label="Page navigation example">
@@ -15,16 +15,19 @@ export default function Pagination(props) {
         {pages.map(page => (
           <li
             key={page}
-            className={page === currentPage ? "page-item active" : "page-item"}
+            className={page === currentPage ? "page-item active" : "page-item "}
           >
-            <a onClick={() => onPageChanges(page)} className="page-link">
+            <a
+              onClick={() => onPageChanges(page)}
+              className="page-link bg-secondary text-white"
+            >
               {page}
             </a>
           </li>
         ))}
       </ul>
     </nav>
-  );
+  )
 }
 
 Pagination.propTypes = {
@@ -32,4 +35,4 @@ Pagination.propTypes = {
   pageSize: PropTypes.number.isRequired,
   onPageChanges: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired
-};
+}
