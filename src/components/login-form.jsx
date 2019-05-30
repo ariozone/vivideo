@@ -27,6 +27,7 @@ export default class LoginForm extends Form {
       const { username, password } = this.state.data
       const user = await login(username, password)
       localStorage.setItem("token", user.data)
+      this.props.history.push("/")
     } catch (err) {
       if (err.response && err.response.status === 400) {
         const errors = { ...this.state.errors }
