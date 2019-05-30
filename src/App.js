@@ -17,6 +17,12 @@ class App extends Component {
   state = {
     user: {}
   }
+  componentDidMount() {
+    const jwt = localStorage.getItem("token")
+    const user = jwtDecode(jwt)
+    console.log(user)
+  }
+
   render() {
     return (
       <React.Fragment>
