@@ -9,6 +9,7 @@ import Rentals from "./components/rentals"
 import LoginForm from "./components/login-form"
 import RegisterForm from "./components/register-form"
 import NavBar from "./components/navbar"
+import Profile from "./components/profile"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
@@ -26,10 +27,11 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.state
     return (
       <React.Fragment>
         <ToastContainer />
-        <NavBar user={this.state.user} />
+        <NavBar user={user} />
         <main className="container">
           <Switch>
             <Route path="/movies/:id" component={MovieForm} />
@@ -39,6 +41,10 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/movie-form" component={MovieForm} />
+            <Route
+              path="/me"
+              render={props => <Profile user={user} {...props} />}
+            />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/movies" />
             <Redirect to="/not-found" />

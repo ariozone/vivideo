@@ -39,8 +39,8 @@ export default function NavBar(props) {
             </NavLink>
           </li>
         </ul>
-        <ul className="navbar-nav  float-right">
-          {!props.user && (
+        <ul className="navbar-nav float-right">
+          {!props.user.name && (
             <React.Fragment>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/login">
@@ -54,7 +54,7 @@ export default function NavBar(props) {
               </li>
             </React.Fragment>
           )}
-          {props.user && (
+          {props.user.name && (
             <React.Fragment>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/me">
