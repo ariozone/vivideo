@@ -10,6 +10,7 @@ import LoginForm from "./components/login-form"
 import RegisterForm from "./components/register-form"
 import NavBar from "./components/navbar"
 import Profile from "./components/profile"
+import Logout from "./components/logout"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
@@ -45,6 +46,7 @@ class App extends Component {
               path="/me"
               render={props => <Profile user={user} {...props} />}
             />
+            <Route path="/logout" component={Logout} />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/movies" />
             <Redirect to="/not-found" />
