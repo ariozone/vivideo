@@ -15,8 +15,21 @@ code {
     monospace;
 }
 
+input {
+  background-color: rgb(209, 203, 203) !important;
+  border-color: gray !important;
+}
+
 .list-group {
   background-color: gray !important;
+}
+
+.active {
+  border-color: gray !important;
+}
+
+.page-link {
+  border-color: gray !important;
 }
 
 .pointer {

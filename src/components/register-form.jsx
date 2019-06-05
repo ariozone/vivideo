@@ -3,6 +3,7 @@ import Joi from "joi-browser"
 import Form from "./common/form"
 import { register } from "../services/userServices"
 import { toast } from "react-toastify"
+import { loginUponRegistration } from "../services/authenticationService"
 
 export default class RegisterForm extends Form {
   constructor(props) {
@@ -30,8 +31,7 @@ export default class RegisterForm extends Form {
   doSubmit = async () => {
     try {
       const response = await register(this.state.data)
-      console.log(response)
-      localStorage.setItem("token", response.headers["x-auth-token"])
+      loginUponRegistration(response.headers["x-auth-token"])
       window.location = "/"
       toast.success("You are now registered and logged in!")
     } catch (err) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 export default function SearchInput(props) {
   return (
     <div className="input-group mb-3">
@@ -12,5 +12,5 @@ export default function SearchInput(props) {
         onChange={event => props.onChange(event.target.value)}
       />
     </div>
-  );
+  )
 }
