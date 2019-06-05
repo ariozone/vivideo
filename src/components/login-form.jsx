@@ -25,8 +25,7 @@ export default class LoginForm extends Form {
   async doSubmit() {
     try {
       const { username, password } = this.state.data
-      const user = await login(username, password)
-      localStorage.setItem("token", user.data)
+      await login(username, password)
       window.location = "/"
     } catch (err) {
       if (err.response && err.response.status === 400) {
