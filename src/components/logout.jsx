@@ -1,11 +1,12 @@
 import React from "react"
+import { logout } from "../services/authenticationService"
 
 export default class Logout extends React.Component {
   componentDidMount() {
-    localStorage.removeItem("token")
+    logout()
     window.location = "/"
   }
   render() {
-    return <h1>Logged Out</h1>
+    return null
   }
 }

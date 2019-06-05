@@ -7,3 +7,7 @@ export async function login(email, password) {
   const response = await http.post(endPoint, { email, password })
   localStorage.setItem("token", response.data)
 }
+
+export function logout() {
+  localStorage.removeItem("token")
+}
