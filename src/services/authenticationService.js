@@ -9,6 +9,10 @@ export async function login(email, password) {
   localStorage.setItem("token", response.data)
 }
 
+export function loginUponRegistration(token) {
+  localStorage.setItem(token)
+}
+
 export function logout() {
   localStorage.removeItem("token")
 }
