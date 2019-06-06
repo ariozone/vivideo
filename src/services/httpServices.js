@@ -1,5 +1,10 @@
 import axios from "axios"
 import { toast } from "react-toastify"
+import { getJwt } from "./authenticationService"
+
+// token will be included in all requests.
+// if token does not exist, this header will not be set.
+axios.defaults.headers.common["x-auth-token"] = getJwt()
 
 axios.interceptors.response.use(null, error => {
   const clientError =
@@ -8,7 +13,7 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500
 
   if (!clientError) {
-    // Log the error
+    console.log(error)
     toast.error("Something went wrong!")
   }
   return Promise.reject(error)
