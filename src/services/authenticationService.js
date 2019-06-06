@@ -29,3 +29,6 @@ export function getCurrentUser() {
 export function getJwt() {
   return localStorage.getItem("token")
 }
+
+const token = getJwt()
+if (token) http.setHeaders(getJwt())

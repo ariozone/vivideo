@@ -1,10 +1,9 @@
 import axios from "axios"
 import { toast } from "react-toastify"
-import { getJwt } from "./authenticationService"
 
-// token will be included in all requests.
-// if token does not exist, this header will not be set.
-axios.defaults.headers.common["x-auth-token"] = getJwt()
+function setHeaders(token) {
+  axios.defaults.headers.common["x-auth-token"] = token
+}
 
 axios.interceptors.response.use(null, error => {
   const clientError =
@@ -22,5 +21,6 @@ export default {
   get: axios.get,
   post: axios.post,
   put: axios.put,
-  delete: axios.delete
+  delete: axios.delete,
+  setHeaders
 }
