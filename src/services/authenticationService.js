@@ -25,3 +25,7 @@ export function getCurrentUser() {
     return null
   }
 }
+
+export function getJwt() {
+  return localStorage.getItem("token")
+}
