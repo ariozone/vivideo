@@ -33,7 +33,10 @@ class App extends Component {
         <main className="container">
           <Switch>
             <Route path="/movies/:id" component={MovieForm} />
-            <Route path="/movies" component={Movies} />
+            <Route
+              path="/movies"
+              render={props => <Movies user={user} {...props} />}
+            />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/login" component={LoginForm} />
