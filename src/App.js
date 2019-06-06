@@ -32,7 +32,12 @@ class App extends Component {
         <NavBar user={user} />
         <main className="container">
           <Switch>
-            <Route path="/movies/:id" component={MovieForm} />
+            <Route
+              path="/movies/:id"
+              render={props =>
+                !user ? <Redirect to="/login" /> : <MovieForm {...props} />
+              }
+            />
             <Route
               path="/movies"
               render={props => <Movies user={user} {...props} />}
