@@ -34,23 +34,25 @@ class App extends Component {
           <Switch>
             <Route
               path="/movies/:id"
-              render={props =>
-                !user ? <Redirect to="/login" /> : <MovieForm {...props} />
-              }
+              render={props => {
+                if (!user) return <Redirect to="/login" />
+                return <MovieForm {...props} />
+              }}
             />
             <Route
               path="/movies"
               render={props => <Movies user={user} {...props} />}
+            />
+            <Route
+              path="/me"
+              render={props => <Profile user={user} {...props} />}
             />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/movie-form" component={MovieForm} />
-            <Route
-              path="/me"
-              render={props => <Profile user={user} {...props} />}
-            />
+            } />
             <Route path="/logout" component={Logout} />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/movies" />
