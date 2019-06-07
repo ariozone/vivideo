@@ -26,7 +26,8 @@ export default class LoginForm extends Form {
     try {
       const { username, password } = this.state.data
       await login(username, password)
-      window.location = "/"
+      const state = this.props.location.state
+      window.location = state ? state.referrer : "/"
     } catch (err) {
       if (err.response && err.response.status === 400) {
         const errors = { ...this.state.errors }
