@@ -1,8 +1,7 @@
 import http from "./httpServices"
-import { url } from "../config.json"
 import jwtDecode from "jwt-decode"
 
-const endPoint = url + "/logins"
+const endPoint = "/logins"
 
 export async function login(email, password) {
   const response = await http.post(endPoint, { email, password })
