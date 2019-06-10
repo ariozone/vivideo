@@ -142,9 +142,11 @@ export default class Movies extends Component {
             currentPage={currentPage}
           />
         </div>
-        <Link className="btn btn-outline-secondary btn-block" to="movies/new">
-          Add New
-        </Link>
+        {this.props.user && (
+          <Link className="btn btn-outline-secondary btn-block" to="movies/new">
+            Add New
+          </Link>
+        )}
       </div>
     )
   }

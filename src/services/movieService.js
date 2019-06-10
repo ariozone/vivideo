@@ -20,7 +20,6 @@ export function saveMovie(movie) {
   }
 
   const movieBody = { ...movie }
-  console.log(movieBody)
   delete movieBody._id
   return http.put(endPoint + "/" + movie._id, movieBody)
 }
