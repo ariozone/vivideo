@@ -1,7 +1,6 @@
 import http from "./httpServices"
-import { url } from "../config.json"
 
-const endPoint = url + "/movies"
+const endPoint = "/movies"
 export function getMovies() {
   return http.get(endPoint)
 }
