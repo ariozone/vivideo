@@ -70,13 +70,14 @@ export default class Form extends Component {
     )
   }
 
-  renderInput(name, label, type) {
+  renderInput(name, label, type, help) {
     return (
       <Input
         name={name}
         value={this.state.data[name]}
         label={label}
         type={type}
+        help={help}
         onChange={this.handleChange}
         error={this.state.errors[name]}
       />

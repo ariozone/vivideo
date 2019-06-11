@@ -45,12 +45,15 @@ export default class RegisterForm extends Form {
   }
 
   render() {
+    const help =
+      "Password must be at least 6 characters including one upper case, one lower case, one number and one special character."
+
     return (
       <div>
         <h1 className="m-2">Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Username")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("password", "Password", "password", help)}
           {this.renderInput("name", "Name")}
           {this.renderButton("Register")}
         </form>
