@@ -46,6 +46,11 @@ export default class Customers extends Component {
         ) : (
           <h3>No customers in data base.</h3>
         )}
+        <Table
+          items={customers}
+          columns={this.columns}
+          sortColumn={sortColumn}
+        />{" "}
       </React.Fragment>
     )
   }
