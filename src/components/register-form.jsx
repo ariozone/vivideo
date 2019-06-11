@@ -51,7 +51,7 @@ export default class RegisterForm extends Form {
 
     return (
       <div>
-        <h1 className="m-2">Register</h1>
+        <h1 className="my-5">Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Username", "text", helpUsername)}
           {this.renderInput("password", "Password", "password", helpPassword)}
