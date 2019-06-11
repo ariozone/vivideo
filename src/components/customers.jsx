@@ -1,9 +1,12 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import http from "../services/httpServices"
+import Table from "./common/table"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAward } from "@fortawesome/free-solid-svg-icons"
 
 export default class Customers extends Component {
-  state = { customers: [] }
+  state = { customers: [], sortColumn: { path: "name", order: "asc" } }
   columns = [
     {
       path: "name",
@@ -16,13 +19,12 @@ export default class Customers extends Component {
     },
     { path: "contact", label: "Contact" },
     {
-      key: "prime",
-      content: customer => (
-        <i
-          isPrime={customer.isPrime}
-          onClick={() => this.props.handlePrime(customer)}
-        />
-      )
+      path: "isPrime",
+      label: "Prime Member",
+      content: customer =>
+        customer.isPrime && (
+          <FontAwesomeIcon icon={faAward} size="2x" color="gray" />
+        )
     }
   ]
 
@@ -32,13 +34,14 @@ export default class Customers extends Component {
   }
 
   render() {
-    const numberOfCustomers = this.state.customers.length
+    const { customers, sortColumn } = this.state
+
     console.log(this.state.customers)
     return (
       <React.Fragment>
-        {numberOfCustomers ? (
+        {customers.length ? (
           <h3 className="my-5">
-            There are {numberOfCustomers} customers in the data base.
+            There are {customers.length} customers in the data base.
           </h3>
         ) : (
           <h3>No customers in data base.</h3>
