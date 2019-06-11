@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import http from "../services/httpServices"
 
 export default class Customers extends Component {
   state = { customers: [] }
@@ -24,7 +25,25 @@ export default class Customers extends Component {
       )
     }
   ]
+
+  async componentDidMount() {
+    const { data: customers } = await http.get("/customers")
+    this.setState({ customers })
+  }
+
   render() {
-    return <h1 className="my-5">Customers</h1>
+    const numberOfCustomers = this.state.customers.length
+    console.log(this.state.customers)
+    return (
+      <React.Fragment>
+        {numberOfCustomers ? (
+          <h3 className="my-5">
+            There are {numberOfCustomers} customers in the data base.
+          </h3>
+        ) : (
+          <h3>No customers in data base.</h3>
+        )}
+      </React.Fragment>
+    )
   }
 }
