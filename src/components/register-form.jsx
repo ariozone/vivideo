@@ -29,6 +29,7 @@ export default class RegisterForm extends Form {
   }
 
   doSubmit = async () => {
+    // const message = "User is already registered!"
     try {
       const response = await register(this.state.data)
       loginUponRegistration(response.headers["x-auth-token"])
@@ -36,21 +37,27 @@ export default class RegisterForm extends Form {
       toast.success("You are now registered and logged in!")
     } catch (err) {
       if (err.response && err.response.status === 400) {
-        const errors = { ...this.state.errors }
-        errors.email = "User is already registered!"
-        errors.password = err.response.data
-        this.setState({ errors })
+        toast.error(err.response.data)
+        // const errors = { ...this.state.errors }
+        // err.response.data === message
+        //   ? (errors.email = message)
+        //   : (errors.password = err.response.data)
+        // this.setState({ errors })
       }
     }
   }
 
   render() {
+    const helpPassword =
+      "Password must be at least 6 characters including one upper case, one lower case, one number and one special character."
+    const helpUsername = "Username must be a valid email."
+
     return (
       <div>
-        <h1 className="m-2">Register</h1>
+        <h1 className="my-5">Register</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("email", "Username")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("email", "Username", "text", helpUsername)}
+          {this.renderInput("password", "Password", "password", helpPassword)}
           {this.renderInput("name", "Name")}
           {this.renderButton("Register")}
         </form>

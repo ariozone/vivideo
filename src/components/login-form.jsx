@@ -43,7 +43,7 @@ export default class LoginForm extends Form {
       <Redirect to="/" />
     ) : (
       <div>
-        <h1>Login</h1>
+        <h1 className="my-5">Login</h1>
 
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
