@@ -33,6 +33,10 @@ git clone https://github.com/ariozone/vivideo-api.git
 cd vivideo-api/
 npm install
 ```
+##### To add sample data:
+```
+node sample-data.js
+```
 ##### Run the back-end:
 ```
 node index.js
