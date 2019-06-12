@@ -29,6 +29,7 @@ export default class RegisterForm extends Form {
   }
 
   doSubmit = async () => {
+    // const message = "User is already registered!"
     try {
       const response = await register(this.state.data)
       loginUponRegistration(response.headers["x-auth-token"])
@@ -36,10 +37,12 @@ export default class RegisterForm extends Form {
       toast.success("You are now registered and logged in!")
     } catch (err) {
       if (err.response && err.response.status === 400) {
-        const errors = { ...this.state.errors }
-        errors.email = "User is already registered!"
-        errors.password = err.response.data
-        this.setState({ errors })
+        toast.error(err.response.data)
+        // const errors = { ...this.state.errors }
+        // err.response.data === message
+        //   ? (errors.email = message)
+        //   : (errors.password = err.response.data)
+        // this.setState({ errors })
       }
     }
   }

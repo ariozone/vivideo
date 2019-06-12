@@ -4,9 +4,25 @@ import http from "../services/httpServices"
 import Table from "./common/table"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAward } from "@fortawesome/free-solid-svg-icons"
+import { getCurrentUser } from "../services/authenticationService"
 
 export default class Customers extends Component {
   state = { customers: [], sortColumn: { path: "name", order: "asc" } }
+  deleteButton =
+    getCurrentUser() && getCurrentUser().isAdmin
+      ? {
+          key: "delete",
+          content: customer => (
+            <button
+              className="btn btn-sm btn-danger"
+              onClick={() => this.props.onDelete(customer)}
+            >
+              Delete
+            </button>
+          )
+        }
+      : { key: "delete" }
+
   columns = [
     {
       path: "name",
@@ -25,7 +41,8 @@ export default class Customers extends Component {
         customer.isPrime && (
           <FontAwesomeIcon icon={faAward} size="2x" color="gray" />
         )
-    }
+    },
+    this.deleteButton
   ]
 
   async componentDidMount() {
@@ -35,8 +52,6 @@ export default class Customers extends Component {
 
   render() {
     const { customers, sortColumn } = this.state
-
-    console.log(this.state.customers)
     return (
       <React.Fragment>
         {customers.length ? (
