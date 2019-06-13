@@ -66,6 +66,14 @@ export default class Customers extends Component {
           columns={this.columns}
           sortColumn={sortColumn}
         />{" "}
+        {getCurrentUser() && (
+          <Link
+            className="btn btn-outline-secondary btn-block"
+            to="customer/new"
+          >
+            Add New
+          </Link>
+        )}
       </React.Fragment>
     )
   }
