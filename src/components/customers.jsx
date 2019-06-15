@@ -1,15 +1,16 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import http from "../services/httpServices"
 import Table from "./common/table"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAward } from "@fortawesome/free-solid-svg-icons"
 import { getCurrentUser } from "../services/authenticationService"
+import { getCustomers } from "../services/customerService"
 
 export default class Customers extends Component {
   state = { customers: [], sortColumn: { path: "name", order: "asc" } }
+  user = getCurrentUser()
   deleteButton =
-    getCurrentUser() && getCurrentUser().isAdmin
+    this.user && this.user.isAdmin
       ? {
           key: "delete",
           content: customer => (
@@ -46,7 +47,7 @@ export default class Customers extends Component {
   ]
 
   async componentDidMount() {
-    const { data: customers } = await http.get("/customers")
+    const { data: customers } = await getCustomers()
     this.setState({ customers })
   }
 
@@ -69,7 +70,7 @@ export default class Customers extends Component {
         {getCurrentUser() && (
           <Link
             className="btn btn-outline-secondary btn-block"
-            to="customer/new"
+            to="customer-form"
           >
             Add New
           </Link>
