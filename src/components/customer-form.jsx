@@ -1,6 +1,7 @@
 import React from "react"
 import Form from "./common/form"
 import Joi from "joi-browser"
+import { saveCustomer } from "../services/customerService"
 
 export default class CustomerForm extends Form {
   state = {
@@ -27,6 +28,10 @@ export default class CustomerForm extends Form {
       .min(5)
       .max(100),
     isPrime: Joi.boolean()
+  }
+
+  async doSubmit() {
+    await saveCustomer(this.state.data)
   }
 
   render() {
