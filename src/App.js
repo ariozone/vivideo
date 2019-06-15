@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom"
 import Movies from "./components/movies"
 import Customers from "./components/customers"
 import MovieForm from "./components/movie-form"
+import CustomerForm from "./components/customer-form"
 import NotFound from "./components/not-found"
 import Rentals from "./components/rentals"
 import LoginForm from "./components/login-form"
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/movie-form" component={MovieForm} />
+            <Route path="/customer-form" component={CustomerForm} />
             <Route path="/logout" component={Logout} />
             <Route path="/not-found" component={NotFound} />
             <Route
