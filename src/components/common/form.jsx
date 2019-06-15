@@ -62,7 +62,7 @@ export default class Form extends Component {
     return (
       <button
         type="submit"
-        className="btn btn-secondary"
+        className="btn btn-secondary btn-block my-5"
         disabled={this.validate()}
       >
         {label}

@@ -15,7 +15,9 @@ code {
     monospace;
 }
 
-input {
+input,
+option,
+.form-control {
   background-color: rgb(209, 203, 203) !important;
   border-color: gray !important;
 }
