@@ -2,6 +2,7 @@ import React from "react"
 import Form from "./common/form"
 import Joi from "joi-browser"
 import { saveCustomer } from "../services/customerService"
+import { toast } from "react-toastify"
 
 export default class CustomerForm extends Form {
   state = {
@@ -32,6 +33,8 @@ export default class CustomerForm extends Form {
 
   async doSubmit() {
     await saveCustomer(this.state.data)
+    this.props.history.replace("/customers")
+    toast.success("Customer added")
   }
 
   render() {
