@@ -31,6 +31,12 @@ export default class CustomerForm extends Form {
     isPrime: Joi.boolean()
   }
 
+  async componentDidMount() {
+    const selectedCustomer = this.props.match.params.id
+    const { data } = await getCustomer(selectedCustomer)
+    this.setState({ data })
+  }
+
   async doSubmit() {
     await saveCustomer(this.state.data)
     this.props.history.replace("/customers")
