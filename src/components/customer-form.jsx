@@ -1,7 +1,7 @@
 import React from "react"
 import Form from "./common/form"
 import Joi from "joi-browser"
-import { saveCustomer } from "../services/customerService"
+import { saveCustomer, getCustomer } from "../services/customerService"
 import { toast } from "react-toastify"
 
 export default class CustomerForm extends Form {
@@ -10,14 +10,14 @@ export default class CustomerForm extends Form {
     errors: {}
   }
 
-  // createViewModel(customer) {
-  //   return {
-  //     _id: customer._id,
-  //     name: customer.name,
-  //     contact: customer.contact,
-  //     isPrime: customer.isPrime
-  //   }
-  // }
+  createViewModel(customer) {
+    return {
+      _id: customer._id,
+      name: customer.name,
+      contact: customer.contact,
+      isPrime: customer.isPrime
+    }
+  }
 
   schema = {
     name: Joi.string()

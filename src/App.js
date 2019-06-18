@@ -35,6 +35,7 @@ class App extends Component {
         <main className="container">
           <Switch>
             <ProtectedRoute path="/movies/:id" component={MovieForm} />
+            <ProtectedRoute path="/customers/:id" component={CustomerForm} />
             <ProtectedRoute
               path="/me"
               render={props => <Profile user={user} {...props} />}
