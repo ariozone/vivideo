@@ -33,8 +33,8 @@ export default class CustomerForm extends Form {
 
   async componentDidMount() {
     const selectedCustomer = this.props.match.params.id
-    const { data } = await getCustomer(selectedCustomer)
-    this.setState({ data })
+    const { data: customer } = await getCustomer(selectedCustomer)
+    this.setState({ data: this.createViewModel(customer) })
   }
 
   async doSubmit() {

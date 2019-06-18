@@ -60,7 +60,7 @@ export default class Customers extends Component {
             There are {customers.length} customers in the data base.
           </h3>
         ) : (
-          <h3>No customers in data base.</h3>
+          <h3 className="my-5">No customers in data base.</h3>
         )}
         <Table
           items={customers}
@@ -70,7 +70,7 @@ export default class Customers extends Component {
         {getCurrentUser() && (
           <Link
             className="btn btn-outline-secondary btn-block"
-            to="customer-form"
+            to="customers/new"
           >
             Add New
           </Link>
