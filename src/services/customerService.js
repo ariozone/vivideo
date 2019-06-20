@@ -11,5 +11,10 @@ export function getCustomer(customerId) {
 }
 
 export function saveCustomer(customer) {
-  return http.post(endPoint, customer)
+  if (!customer._id) {
+    return http.post(endPoint, customer)
+  }
+  const customerBody = { ...customer }
+  delete customerBody._id
+  return http.put(endPoint + "/" + customer._id, customerBody)
 }
