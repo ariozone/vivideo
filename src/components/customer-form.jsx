@@ -20,6 +20,7 @@ export default class CustomerForm extends Form {
   }
 
   schema = {
+    _id: Joi.string(),
     name: Joi.string()
       .required()
       .min(3)

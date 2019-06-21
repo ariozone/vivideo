@@ -18,3 +18,7 @@ export function saveCustomer(customer) {
   delete customerBody._id
   return http.put(endPoint + "/" + customer._id, customerBody)
 }
+
+export function deleteCustomer(customerId) {
+  return http.delete(endPoint + "/" + customerId)
+}
