@@ -1,21 +1,23 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import http from "../services/httpServices"
 import Table from "./common/table"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAward } from "@fortawesome/free-solid-svg-icons"
 import { getCurrentUser } from "../services/authenticationService"
+import { getCustomers, deleteCustomer } from "../services/customerService"
+import { toast } from "react-toastify"
 
 export default class Customers extends Component {
   state = { customers: [], sortColumn: { path: "name", order: "asc" } }
+  user = getCurrentUser()
   deleteButton =
-    getCurrentUser() && getCurrentUser().isAdmin
+    this.user && this.user.isAdmin
       ? {
           key: "delete",
           content: customer => (
             <button
               className="btn btn-sm btn-danger"
-              onClick={() => this.props.onDelete(customer)}
+              onClick={() => this.handleDelete(customer)}
             >
               Delete
             </button>
@@ -46,8 +48,23 @@ export default class Customers extends Component {
   ]
 
   async componentDidMount() {
-    const { data: customers } = await http.get("/customers")
+    const { data: customers } = await getCustomers()
     this.setState({ customers })
+  }
+
+  async handleDelete(customer) {
+    const customersBeforeDelete = [...this.state.customers]
+    const customers = customersBeforeDelete.filter(c => c !== customer)
+    this.setState({ customers })
+    try {
+      await deleteCustomer(customer._id)
+      toast.success("Customer deleted successfully.")
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error("This customer has been deleted already!")
+        this.setState({ customer: customersBeforeDelete })
+      }
+    }
   }
 
   render() {
@@ -59,13 +76,21 @@ export default class Customers extends Component {
             There are {customers.length} customers in the data base.
           </h3>
         ) : (
-          <h3>No customers in data base.</h3>
+          <h3 className="my-5">No customers in data base.</h3>
         )}
         <Table
           items={customers}
           columns={this.columns}
           sortColumn={sortColumn}
         />{" "}
+        {getCurrentUser() && (
+          <Link
+            className="btn btn-outline-secondary btn-block"
+            to="customers/new"
+          >
+            Add New
+          </Link>
+        )}
       </React.Fragment>
     )
   }

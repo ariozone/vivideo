@@ -75,7 +75,7 @@ export default class MovieForm extends Form {
   render() {
     return (
       <div>
-        <h1 className="m-2">Movie Form</h1>
+        <h1 className="my-5">Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title", "text")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
