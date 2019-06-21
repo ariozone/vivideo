@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAward } from "@fortawesome/free-solid-svg-icons"
 import { getCurrentUser } from "../services/authenticationService"
 import { getCustomers, deleteCustomer } from "../services/customerService"
+import { toast } from "react-toastify"
 
 export default class Customers extends Component {
   state = { customers: [], sortColumn: { path: "name", order: "asc" } }
@@ -55,7 +56,15 @@ export default class Customers extends Component {
     const customersBeforeDelete = [...this.state.customers]
     const customers = customersBeforeDelete.filter(c => c !== customer)
     this.setState({ customers })
-    await deleteCustomer(customer._id)
+    try {
+      await deleteCustomer(customer._id)
+      toast.success("Customer deleted successfully.")
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error("This customer has been deleted already!")
+        this.setState({ customer: customersBeforeDelete })
+      }
+    }
   }
 
   render() {
