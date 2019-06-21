@@ -4,7 +4,7 @@ import Table from "./common/table"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAward } from "@fortawesome/free-solid-svg-icons"
 import { getCurrentUser } from "../services/authenticationService"
-import { getCustomers } from "../services/customerService"
+import { getCustomers, deleteCustomer } from "../services/customerService"
 
 export default class Customers extends Component {
   state = { customers: [], sortColumn: { path: "name", order: "asc" } }
@@ -16,7 +16,7 @@ export default class Customers extends Component {
           content: customer => (
             <button
               className="btn btn-sm btn-danger"
-              onClick={() => this.props.onDelete(customer)}
+              onClick={() => this.handleDelete(customer)}
             >
               Delete
             </button>
@@ -49,6 +49,13 @@ export default class Customers extends Component {
   async componentDidMount() {
     const { data: customers } = await getCustomers()
     this.setState({ customers })
+  }
+
+  async handleDelete(customer) {
+    const customersBeforeDelete = [...this.state.customers]
+    const customers = customersBeforeDelete.filter(c => c !== customer)
+    this.setState({ customers })
+    await deleteCustomer(customer._id)
   }
 
   render() {
