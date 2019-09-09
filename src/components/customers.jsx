@@ -16,7 +16,7 @@ export default class Customers extends Component {
           key: "delete",
           content: customer => (
             <button
-              className="btn btn-sm btn-danger"
+              className='btn btn-sm btn-danger'
               onClick={() => this.handleDelete(customer)}
             >
               Delete
@@ -30,7 +30,7 @@ export default class Customers extends Component {
       path: "name",
       label: "Name",
       content: customer => (
-        <Link className="text-dark" to={`/customers/${customer._id}`}>
+        <Link className='text-dark' to={`/customers/${customer._id}`}>
           {customer.name}
         </Link>
       )
@@ -41,7 +41,7 @@ export default class Customers extends Component {
       label: "Prime Member",
       content: customer =>
         customer.isPrime && (
-          <FontAwesomeIcon icon={faAward} size="2x" color="gray" />
+          <FontAwesomeIcon icon={faAward} size='2x' color='gray' />
         )
     },
     this.deleteButton
@@ -67,26 +67,31 @@ export default class Customers extends Component {
     }
   }
 
+  handleSort = sortColumn => {
+    this.setState({ sortColumn })
+  }
+
   render() {
     const { customers, sortColumn } = this.state
     return (
       <React.Fragment>
         {customers.length ? (
-          <h3 className="my-5">
+          <h3 className='my-5'>
             There are {customers.length} customers in the data base.
           </h3>
         ) : (
-          <h3 className="my-5">No customers in data base.</h3>
+          <h3 className='my-5'>No customers in data base.</h3>
         )}
         <Table
           items={customers}
           columns={this.columns}
           sortColumn={sortColumn}
+          onSort={this.handleSort}
         />{" "}
         {getCurrentUser() && (
           <Link
-            className="btn btn-outline-secondary btn-block"
-            to="customers/new"
+            className='btn btn-outline-secondary btn-block'
+            to='customers/new'
           >
             Add New
           </Link>

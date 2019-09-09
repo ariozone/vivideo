@@ -108,8 +108,8 @@ export default class Movies extends Component {
     const movies = paginate(sorted, currentPage, pageSize)
 
     return (
-      <div className="row">
-        <div className="col-3">
+      <div className='row'>
+        <div className='col-3'>
           <ListGroup
             items={genres}
             onGenreSelect={this.handleSelect}
@@ -117,16 +117,24 @@ export default class Movies extends Component {
           />
         </div>
 
-        <div className="col">
-          <h4 className="m-3">
+        <div className='col'>
+          <h4 className='m-3'>
             There are {filtered.length}{" "}
             {selectedGenre.name === "All Genres" ? "" : selectedGenre.name}{" "}
             Movies Available.
           </h4>
+          {this.props.user && (
+            <Link to='movies/new'>
+              {" "}
+              <button className='btn btn-outline-secondary mx-auto my-3'>
+                Add New
+              </button>
+            </Link>
+          )}
           <SearchInput
             onChange={this.handleSearch}
             value={this.state.searchInput}
-          />
+          />{" "}
           <MoviesTable
             movies={movies}
             onLike={this.handleLike}
@@ -134,7 +142,6 @@ export default class Movies extends Component {
             onSort={this.handleSort}
             sortColumn={sortColumn}
           />
-
           <Pagination
             items={filtered.length}
             pageSize={pageSize}
@@ -142,11 +149,6 @@ export default class Movies extends Component {
             currentPage={currentPage}
           />
         </div>
-        {this.props.user && (
-          <Link className="btn btn-outline-secondary btn-block" to="movies/new">
-            Add New
-          </Link>
-        )}
       </div>
     )
   }

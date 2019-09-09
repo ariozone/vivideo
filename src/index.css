@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: rgb(218, 190, 190) !important;
+  background-color: rgb(209, 208, 208) !important;
   padding: 0;
   font-family: "Comfortaa", cursive !important;
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,7 +18,7 @@ code {
 input,
 option,
 .form-control {
-  background-color: rgb(209, 203, 203) !important;
+  background-color: lightgray !important;
   border-color: gray !important;
 }
 

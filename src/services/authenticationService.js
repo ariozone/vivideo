@@ -1,7 +1,8 @@
 import http from "./httpServices"
 import jwtDecode from "jwt-decode"
+import { url } from "../config.json"
 
-const endPoint = "/logins"
+const endPoint = url + "/logins"
 
 export async function login(email, password) {
   const response = await http.post(endPoint, { email, password })
@@ -9,7 +10,7 @@ export async function login(email, password) {
 }
 
 export function loginUponRegistration(token) {
-  localStorage.setItem(token)
+  localStorage.setItem("token", token)
 }
 
 export function logout() {

@@ -12,6 +12,7 @@ export default class RegisterForm extends Form {
       data: { email: "", password: "", name: "" },
       errors: {}
     }
+    this.doSubmit = this.doSubmit.bind(this)
   }
 
   schema = {
@@ -28,21 +29,15 @@ export default class RegisterForm extends Form {
       .label("Name")
   }
 
-  doSubmit = async () => {
-    // const message = "User is already registered!"
+  async doSubmit() {
     try {
       const response = await register(this.state.data)
       loginUponRegistration(response.headers["x-auth-token"])
-      window.location = "/"
-      toast.success("You are now registered and logged in!")
+      toast.success(`You are successfully registered and logged in!`)
+      setTimeout(() => (window.location = "/"), 1000)
     } catch (err) {
       if (err.response && err.response.status === 400) {
         toast.error(err.response.data)
-        // const errors = { ...this.state.errors }
-        // err.response.data === message
-        //   ? (errors.email = message)
-        //   : (errors.password = err.response.data)
-        // this.setState({ errors })
       }
     }
   }
@@ -54,7 +49,7 @@ export default class RegisterForm extends Form {
 
     return (
       <div>
-        <h1 className="my-5">Register</h1>
+        <h1 className='my-5'>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Username", "text", helpUsername)}
           {this.renderInput("password", "Password", "password", helpPassword)}

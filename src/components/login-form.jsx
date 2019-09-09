@@ -3,6 +3,7 @@ import Joi from "joi-browser"
 import Form from "./common/form"
 import { Redirect } from "react-router-dom"
 import { login, getCurrentUser } from "../services/authenticationService"
+import { toast } from "react-toastify"
 
 export default class LoginForm extends Form {
   constructor(props) {
@@ -27,23 +28,25 @@ export default class LoginForm extends Form {
     try {
       const { username, password } = this.state.data
       await login(username, password)
+      toast.success(`You are logged in!`)
       const state = this.props.location.state
-      window.location = state ? state.referrer : "/"
+      setTimeout(() => (window.location = state ? state.referrer : "/"), 1000)
     } catch (err) {
       if (err.response && err.response.status === 400) {
         const errors = { ...this.state.errors }
         errors.username = err.response.data
         this.setState({ errors })
+        toast.error("Login Error!")
       }
     }
   }
 
   render() {
     return getCurrentUser() ? (
-      <Redirect to="/" />
+      <Redirect to='/' />
     ) : (
       <div>
-        <h1 className="my-5">Login</h1>
+        <h1 className='my-5'>Login</h1>
 
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
